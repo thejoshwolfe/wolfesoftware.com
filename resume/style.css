@@ -21,20 +21,20 @@
 }
 
 .sidebar h3 {
-  text-align: center;
-  margin: 10px 0;
+  color: #EEEEEE;
   font-family: 'Alegreya Sans', sans-serif;
   font-size: 1.6em;
-  color: #EEEEEE;
   font-weight: 200;
+  margin: 10px 0;
+  text-align: center;
 }
 
 .sidebar .fancy-divider-line {
-  width: 84%;
-  height: 1px;
   background-color: rgba(0,0,0,0.3);
   box-sizing: border-box;
+  height: 1px;
   margin: 10px auto;
+  width: 84%;
 }
 
 .sidebar .snippet {
@@ -61,8 +61,9 @@
 }
 
 .content {
+  height: 100%;
+  overflow: scroll;
+  padding: 0 10px;
   position: relative;
   width: auto;
-  overflow: hidden;
-  height: 100%;
 }
