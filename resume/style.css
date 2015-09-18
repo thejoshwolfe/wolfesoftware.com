@@ -22,7 +22,7 @@
 
 .sidebar h3 {
   color: #EEEEEE;
-  font-family: 'Alegreya Sans', sans-serif;
+  font-family: 'Alegreya Sans', 'Open Sans', sans-serif;
   font-size: 1.6em;
   font-weight: 200;
   margin: 10px 0;
@@ -47,8 +47,8 @@
 }
 
 .sidebar .nav li {
-  text-align: center;
   margin: 10px 0;
+  text-align: center;
 }
 
 .sidebar .nav li a {
@@ -58,6 +58,16 @@
 
 .sidebar .nav li a:hover {
   color: white;
+}
+
+.nav > li > ul li {
+  font-size: 0.8em;
+  list-style: none;
+  margin: 5px 0 !important;
+}
+
+.nav > li > ul li a {
+  color: #BDC9DC !important;
 }
 
 .content {
