@@ -9,12 +9,18 @@
         max-width: 400px;
         max-height: 400px;
       }
+
       p, ul {
         margin: 0em;
       }
+
       h1, h2, h3 {
         margin-bottom: 0em;
       }
+
+     .panels > div {
+       margin: 10px 20px;
+     } 
     </style>
   </head>
   <body style="background: #eee; font-family: sans">
@@ -38,12 +44,24 @@
     </div>
     <div class="content">
       <h1>Skills</h1>
-      <ul>
-        <li>C, C++, Java, Python, JavaScript, CoffeeScript, MIPS Assembly, C#, VB.NET</li>
-        <li>VIM, Eclipse, Visual Studio, Qt Creator, GDB</li>
-        <li>Node.js, AngularJS, SWT/SWTBot, HTML/CSS, SDL, Qt</li>
-        <li>Linux, Windows</li>
-      </ul>
+      <div class="panels">
+        <div>
+          <h3>Languages</h3>
+          <p>C, C++, Java, Python, JavaScript, CoffeeScript, MIPS Assembly, C#, VB.NET</p>
+        </div>
+        <div>
+          <h3>Development Environments</h3>
+          <p>VIM, Eclipse, Visual Studio, Qt Creator, GDB</p>
+        </div>
+        <div>
+          <h3>Frameworks</h3>
+          <p>Node.js, AngularJS, SWT/SWTBot, HTML/CSS, SDL, Qt</p>
+        </div>
+        <div>
+          <h3>Operating Systems</h3>
+          <p>Linux, Windows</p>
+        </div>
+      </div>
       <h1>Experience</h1>
       <h2>Professional Work</h2>
       <div>
