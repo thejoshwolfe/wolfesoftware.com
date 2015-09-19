@@ -18,9 +18,35 @@
         margin-bottom: 0em;
       }
 
-     .panels > div {
-       margin: 10px 20px;
-     } 
+      .set-in {
+        margin: 10px 20px;
+      }
+
+      .heading {
+        border-bottom: 1px solid rgba(0,0,0,0.2);
+        margin-bottom: 5px;
+        padding-bottom: 5px;
+      } 
+     
+      .heading .title {
+        float: left;
+      }
+ 
+      .heading .date {
+        float: right;
+        color: rgba(0,0,0,0.7);
+        font-size: 0.8em;
+        position: relative;
+        top: 6px;
+      }
+
+      .heading .clear {
+        clear: both;
+      }
+
+      .content ul {
+        margin: 10px 20px;
+      }
     </style>
   </head>
   <body style="background: #eee; font-family: sans">
@@ -44,7 +70,7 @@
     </div>
     <div class="content">
       <h1>Skills</h1>
-      <div class="panels">
+      <div class="set-in">
         <div>
           <h3>Languages</h3>
           <p>C, C++, Java, Python, JavaScript, CoffeeScript, MIPS Assembly, C#, VB.NET</p>
@@ -63,97 +89,14 @@
         </div>
       </div>
       <h1>Experience</h1>
-      <h2>Professional Work</h2>
-      <div>
-        <h3><a href="http://www.ddci.com/">DDC-I, Inc.</a></h3>
-        <p>December 2008 - January 2015</p>
-        <p>
-          I was the architect and majority contributor for <a href="http://www.ddci.com/products_openarbor.php">OpenArbor</a>&reg;,
-          an <a href="http://www.eclipse.org/">Eclipse</a>-based IDE in Java for developing C/C++ applications for
-          our safety-critical RTOS, <a href="http://www.ddci.com/products_deos.php">Deos</a>&trade;.
-        </p>
-        <ul>
-          <li>Wrote a Makefile generator to implement all of the IDE's build steps in a way that is consistent inside and outside the GUI.</li>
-          <li>Wrote an application/library interdependency system that manages build-time integration, system-wide metadata configuration, and deploy-time file system management.</li>
-          <li>Wrote an options specification system to allow general build options and options specific to certain target architectures and debug/production variants.</li>
-          <li>Wrote a Gantt chart viewer that shows the timeline of when each thread ran on the embedded system.</li>
-          <li>Extended the debugger interface to support lazy pointer following, variable byte sizes, and more.</li>
-        </ul>
-        <p>
-          I also wrote and maintained dozens of internal tools written in Python that
-          automated tasks such as running tests and indexing documentation.
-        </p>
-      </div>
-      <h2>Open Source Projects</h2>
-      <div>
-        <h3><a href="http://groovebasin.com/">Groove Basin</a></h3>
-        <p>
-          Co-authored with <a href="https://github.com/andrewrk">Andrew Kelley</a>,
-          Groove Basin is a music player server with a web-based user interface. [<a href="https://github.com/andrewrk/groovebasin">src</a>]
-        </p>
-      </div>
-      <div>
-        <h3><a href="https://www.npmjs.com/package/yazl">yazl</a> and <a href="https://www.npmjs.com/package/yauzl">yauzl</a></h3>
-        <p>Zip and unzip libraries for <a href=https://nodejs.org/">Node.js</a>.
-        [<a href="https://github.com/thejoshwolfe/yazl">src</a>, <a href="https://github.com/thejoshwolfe/yauzl">src</a>]</p>
-      </div>
-      <div>
-        <h3><a href="http://wolfesoftware.com/snakefall/">Snakefall</a></h3>
-        A clone of <a href="http://snakebird.noumenongames.com/">Snakebird</a> by Noumenon Games for the browser
-        featuring a level editor to encourage community-made levels.
-        [<a href="https://github.com/thejoshwolfe/snakefall">src</a>]
-      </div>
-      <div>
-        <h3>wolfebin</h3>
-        Quick and easy file sharing client and server written in Python for the command line.
-        [<a href="https://github.com/thejoshwolfe/wolfebin">src</a>]
-      </div>
-      <div>
-        <h3>consoline</h3>
-        Command line program written in C that wraps the stdio of another program in GNU Readline with better asynchronous IO support.
-        [<a href="https://github.com/thejoshwolfe/consoline">src</a>]
-      </div>
-      <div>
-        <h3><a href="http://superjoe.s3.amazonaws.com/temp/legend-of-swarkland.html">Legend of Swarkland</a></h3>
-        Rogue-like hack-n-slash game inspired by Nethack written in C++ and using SDL.
-        [<a href="https://github.com/thejoshwolfe/legend-of-swarkland">src</a>]
-      </div>
-      <div>
-        <h3><a href="http://board-gamer-2d.wolfesoftware.com/">Board Gamer 2d</a></h3>
-        Multiplayer board game and card game simulator for the browser.
-        [<a href="https://github.com/thejoshwolfe/board-gamer-2d">src</a>]
-      </div>
-      <div>
-        <h3>Experimental Programming Languages</h3>
-        <ul>
-          <li>
-            Jax - Java-like language with simplified syntax so that every syntactic form inside a function is an expression.
-            Compiles to Java .class files and runs in the JVM.
-            [<a href="https://github.com/thejoshwolfe/jax">src</a>]
-          </li>
-          <li>
-            Dorp - Statically-typed language with full type inference. Uses LLVM to output native machine code.
-            [<a href="https://github.com/thejoshwolfe/jax">src</a>]
-          </li>
-          <li>
-            Matrix Processor - REPL-enabled interpretor for performing mundane matrix operations to check my work in Linear Algebra class.
-            [lost source].
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h3>MIPS-OS</h3>
-        Assembler, interpretor, and debugger for a simplified version of the MIPS Assembly language.
-        Written as an educational attempt to create a processor and operating system from scratch.
-        <ul>
-          <li>Example program runs two threads that preempt one another with a timer.</li>
-          <li>Debugger supports go, step, setting breakpoints, and showing source code and registers.</li>
-        </ul>
-        <h1>Experience</h1>
+      <div class="set-in">
         <h2>Professional Work</h2>
-        <div>
-          <h3><a href="http://www.ddci.com/">DDC-I, Inc.</a></h3>
-          <p>December 2008 - January 2015</p>
+        <div class="set-in">
+          <div class="heading">
+            <h3 class="title"><a href="http://www.ddci.com/">DDC-I, Inc.</a></h3>
+            <p class="date">December 2008 - January 2015</p>
+            <div class="clear"></div>
+          </div>
           <p>
             I was the architect and majority contributor for <a href="http://www.ddci.com/products_openarbor.php">OpenArbor</a>&reg;,
             an <a href="http://www.eclipse.org/">Eclipse</a>-based IDE in Java for developing C/C++ applications for
@@ -172,10 +115,14 @@
           </p>
         </div>
         <h2>Open Source Projects</h2>
-        <div>
-          <h3><a href="http://groovebasin.com/">Groove Basin</a></h3>
+        <div class="set-in">
+          <div class="heading">
+            <h3 class="title"><a href="http://groovebasin.com/">Groove Basin</a></h3>
+            <p class="date">January 2012 - current</p>
+            <div class="clear"></div>
+          </div>
           <p>
-            Co-authored with Andrew Kelley,
+            Co-authored with <a href="https://github.com/andrewrk">Andrew Kelley</a>,
             Groove Basin is a music player server with a web-based user interface. [<a href="https://github.com/andrewrk/groovebasin">src</a>]
           </p>
         </div>
@@ -238,8 +185,9 @@
           </ul>
         </div>
         <h1>Education</h1>
-        <div>
+        <div class="set-in">
           Arizona State University - Bachelor of Science in Computer Science - 2011.
+        </div>
         </div>
       </div>
     </div>

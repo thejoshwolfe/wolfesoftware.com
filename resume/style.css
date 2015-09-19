@@ -4,6 +4,10 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 .sidebar {
   background: #1250BA;
   box-sizing: border-box;
