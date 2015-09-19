@@ -8,7 +8,7 @@ a {
   text-decoration: none;
 }
 
-.sidebar {
+#sidebar {
   background: #1250BA;
   box-sizing: border-box;
   float: left;
@@ -17,14 +17,14 @@ a {
   width: 200px;
 }
 
-.sidebar .avatar {
+#sidebar .avatar {
   background-position: 50% 50%;
   background-size: cover;
   border-radius: 10px;
   height: 200px;
 }
 
-.sidebar h3 {
+#sidebar h3 {
   color: #EEEEEE;
   font-family: 'Alegreya Sans', 'Open Sans', sans-serif;
   font-size: 1.6em;
@@ -33,7 +33,7 @@ a {
   text-align: center;
 }
 
-.sidebar .fancy-divider-line {
+#sidebar .fancy-divider-line {
   background-color: rgba(0,0,0,0.3);
   box-sizing: border-box;
   height: 1px;
@@ -41,26 +41,26 @@ a {
   width: 84%;
 }
 
-.sidebar .snippet {
+#sidebar .snippet {
   font-size: 0.8em;
   text-align: center;
 }
 
-.sidebar .nav {
+#sidebar .nav {
   list-style: none;
 }
 
-.sidebar .nav li {
+#sidebar .nav li {
   margin: 10px 0;
   text-align: center;
 }
 
-.sidebar .nav li a {
+#sidebar .nav li a {
   color: #DFE4EC;
   text-decoration: none;
 }
 
-.sidebar .nav li a:hover {
+#sidebar .nav li a:hover {
   color: white;
 }
 
