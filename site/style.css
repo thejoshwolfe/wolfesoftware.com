@@ -12,7 +12,7 @@ a {
   background: #1250BA;
   box-sizing: border-box;
   float: left;
-  height: 100%; 
+  height: 100%;
   padding: 20px;
   width: 200px;
 }
@@ -80,4 +80,34 @@ a {
   padding: 0 10px;
   position: relative;
   width: auto;
+}
+
+.set-in {
+  margin: 10px 20px;
+}
+
+.heading {
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+}
+
+.heading .title {
+  float: left;
+}
+
+.heading .date {
+  float: right;
+  color: rgba(0,0,0,0.7);
+  font-size: 0.8em;
+  position: relative;
+  top: 6px;
+}
+
+.heading .clear {
+  clear: both;
+}
+
+.content ul {
+  margin: 10px 20px;
 }
