@@ -136,7 +136,7 @@ a {
   box-sizing: border-box;
   color: #d8d8d8;
   min-height: 200px;
-  padding-top: 20px;
+  padding: 20px 0;
 }
 
 .games-container .game.snakefall .copy {
