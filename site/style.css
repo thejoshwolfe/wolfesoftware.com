@@ -8,6 +8,10 @@ a {
   text-decoration: none;
 }
 
+button {
+  cursor: pointer;
+}
+
 .bg-cover {
   background-position: 50% 50%;
   background-size: cover;
@@ -236,6 +240,10 @@ button i.fa {
 
 .gu-container .gu-row .gu .copy .item:hover button {
   background-color: #ECD28A;
+}
+
+.content .cta-buttons a:hover button {
+  background-color: #FFEDB9 !important;
 }
 
 @media print {
