@@ -10,7 +10,7 @@
       <a name="games"></a>
       <h1>Games</h1>
       <div class="games-container">
-        <div class="game snakefall" style="background-image:url('site/snakefall_wide.png')">
+        <div class="game snakefall bg-cover" style="background-image:url('site/snakefall_wide.png')">
           <h2>Snakefall</h2>
           <div class="copy">
             <p>
@@ -27,7 +27,7 @@
             <a href="snakefall/"><button>play</button></a><a href="https://github.com/thejoshwolfe/snakefall/wiki"><button>wiki</button></a><a href="https://github.com/thejoshwolfe/snakefall"><button>source</button></a>
           </div>
         </div>
-        <div class="game" style="background-image:url('site/swarkland_wide.png')">
+        <div class="game bg-cover" style="background-image:url('site/swarkland_wide.png')">
           <h2>Legend of Swarkland</h2>
           <div class="copy">
             <p>
@@ -54,40 +54,89 @@
       <p>
         I've made a number of simple web apps that assist playing other games.
       </p>
-      <h2>Smash Up</h2>
-      <p>
-        <a href="factions/">Faction Shuffler</a> - Choses randomly from a set of faction names.
-        Supports blacklisting/whitelisting and importing custom factions.
-        Mobile friendly.
-      </p>
-      <h2>Betrayal at House on the Hill</h2>
-      <p>
-        <a href="betrayal/">Character Card Tracker</a> -
-        Track character stats on a laptop instead of the cardboard pentagons with black coffin tokens.
-        Includes a dice roller for convenience.
-      </p>
-      <p>
-        <a href="betrayal-simulator/">Experimental Enhanced Game Assistant</a> -
-        The above plus simulates shuffling and drawing from the decks of cards (not rooms or player pieces).
-        Can run some of the basic events, like Night View and Creepy Doll, with a single button.
-      </p>
-      <h2>Star Wars Mafia</h2>
-      <p>
-        <a href="mafia-shuffle/">Card Shuffler</a> -
-        A variant of <a href="https://en.wikipedia.org/wiki/Mafia_(party_game)">Mafia/Werewolf</a>,
-        Star Wars Mafia has character cards that must be dealt out randomly.
-        This program allows you to select which characters should be in the game, and then tells you the order.
-      </p>
-      <h2>Miscellaneous</h2>
-      <p>
-        <a href="dice-roller/">Dice Roller</a> - D6 dice roller specialized for <a href="http://www.sjgames.com/gurps/">GURPS</a>.
-        Supports huge numbers of dice, shows history, and has hotkeys for everything.
-      </p>
-      <p>
-        <a href="segmantis/">Stopwatch</a> - It's just a stopwatch, and not a very good one.
-        I used it to time myself while <a href="https://www.youtube.com/watch?v=l0a2_j5wyL8">speedrunning Riven</a>.
-      </p>
-
+      <div class="gu-container">
+        <div class="gu-row">
+          <div class="gu">
+            <div class="header bg-cover" style="background-image:url('site/smashup_art.jpg');">
+              <div class="table-cell">
+                <h2>Smash Up</h2>
+              </div>
+            </div>
+            <div class="copy">
+              <div class="item">
+                <h3>Faction Shuffler</h3>
+                <p>
+                  Choses randomly from a set of faction names.
+                </p>
+                <p>
+                  Supports blacklisting/whitelisting and importing custom factions.
+                </p>
+                <p>
+                  Mobile friendly.
+                </p>
+                <div class="cta-buttons">
+                  <a href="/factions"><button>use</button></a><a href="https://github.com/thejoshwolfe/factions"><button>source</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="gu">
+            <div class="header bg-cover" style="background-image:url('site/betrayal_art.png');">
+              <div class="table-cell">
+                <h2>Betrayal at House on the Hill</h2>
+              </div>
+            </div>
+            <div class="copy">
+              <div class="item">
+                <h3>Character Card Tracker</h3>
+                <p>
+                  Track character stats on a laptop instead of the cardboard pentagons with black coffin tokens.
+                </p>
+                <p>
+                  Includes a dice roller for convenience.
+                </p>
+                <div class="cta-buttons">
+                  <a href="/betrayal"><button>use</button></a><a href="https://github.com/thejoshwolfe/"><button>source</button></a>
+                </div>
+              </div>
+              <div class="item">
+                <h3>Experiemental Enhanced Game Assistant</h3>
+                <p>
+                  The above plus simulates shuffling and drawing from the decks of cards (not rooms or player pieces).
+                </p>
+                <p>
+                  Can run some of the basic events, like Night View and Creepy Doll, with a single button.
+                </p>
+                <div class="cta-buttons">
+                  <a href="/betrayal-simulator"><button>use</button></a><a href="https://github.com/thejoshwolfe/"><button>source</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="gu-row">
+          <div class="gu">
+            <h2>Star Wars Mafia</h2>
+            <p>
+              <a href="mafia-shuffle/">Card Shuffler</a> -
+              A variant of <a href="https://en.wikipedia.org/wiki/Mafia_(party_game)">Mafia/Werewolf</a>,
+              Star Wars Mafia has character cards that must be dealt out randomly.
+              This program allows you to select which characters should be in the game, and then tells you the order.
+            </p>
+          </div>
+          <div class="gu">
+            <h2>Miscellaneous</h2>
+            <p>
+              <a href="dice-roller/">Dice Roller</a> - D6 dice roller specialized for <a href="http://www.sjgames.com/gurps/">GURPS</a>.
+              Supports huge numbers of dice, shows history, and has hotkeys for everything.
+            </p>
+            <p>
+              <a href="segmantis/">Stopwatch</a> - It's just a stopwatch, and not a very good one.
+              I used it to time myself while <a href="https://www.youtube.com/watch?v=l0a2_j5wyL8">speedrunning Riven</a>.
+            </p>
+          </div>
+        </div>
+      </div>
       <a name="academia"></a>
       <h1>Academia</h1>
       <p>

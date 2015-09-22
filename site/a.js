@@ -1,5 +1,5 @@
 var sidebarContent = '' +
-  '<div class="avatar" style="background-image:url(/site/josh.jpg)"></div>' +
+  '<div class="avatar bg-cover" style="background-image:url(/site/josh.jpg)"></div>' +
   '<h3>Josh Wolfe</h3>' +
   '<div class="fancy-divider-line"></div>' +
   '<p class="snippet">Software developer with a passion for compilers, games, and open-source software.</p>' +

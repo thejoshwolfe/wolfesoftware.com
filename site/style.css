@@ -8,6 +8,16 @@ a {
   text-decoration: none;
 }
 
+.bg-cover {
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
 #sidebar {
   background: #1250BA;
   box-sizing: border-box;
@@ -20,8 +30,6 @@ a {
 }
 
 #sidebar .avatar {
-  background-position: 50% 50%;
-  background-size: cover;
   border-radius: 10px;
   height: 200px;
 }
@@ -128,7 +136,7 @@ a {
   box-sizing: border-box;
   color: #d8d8d8;
   min-height: 200px;
-  padding: 20px;
+  padding-top: 20px;
 }
 
 .games-container .game.snakefall .copy {
@@ -138,15 +146,21 @@ a {
 }
 
 .games-container .game h2 {
+  background-color: rgba(0,0,0,0.6);
   color: white;
+  font-family: 'Alegreya Sans', 'Open Sans', sans-serif;
+  font-size: 2em;
   margin-bottom: 30px;
+  padding-left: 20px;
 }
 
 .games-container .game .copy {
   letter-spacing: 1px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
-.games-container .game button {
+.content button {
   background-color: #ECC968;
   border: 0;
   border-radius: 5px;
@@ -154,12 +168,70 @@ a {
   padding: 5px 8px;
 }
 
-.games-container .game .cta-buttons {
-  margin-top: 20px;
+.content .cta-buttons a {
+  margin-right: 15px;
 }
 
-.games-container .game .cta-buttons a {
-  margin-right: 15px;
+.games-container .game .cta-buttons {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.gu-container {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+}
+
+.gu-container .gu-row {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+}
+
+.gu-container .gu-row .gu {
+  flex: 1;
+}
+
+.gu-container .gu-row .gu .header {
+  color: white;
+  display: table;
+  height: 100px;
+  text-align: center;
+  width: 101%;
+}
+
+.gu-container .gu-row .gu .header h2 {
+  background-color: rgba(0,0,0,0.6);
+  font-family: 'Alegreya Sans', 'Open Sans', sans-serif;
+  font-size: 2em;
+}
+
+.gu-container .gu-row .gu .copy .item {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 10px;
+}
+
+.gu-container .gu-row .gu .copy .item:last-of-type {
+  border-bottom: 0;
+}
+
+.gu-container .gu-row .gu .cta-buttons {
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+.gu-container .gu-row .gu:hover {
+  background-color: rgba(18, 80, 186, 0.19);
+}
+
+.gu-container .gu-row .gu .copy .item:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.gu-container .gu-row .gu .copy .item:hover button {
+  background-color: #ECD28A;
 }
 
 @media print {
