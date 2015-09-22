@@ -11,7 +11,9 @@ a {
 #sidebar {
   background: #1250BA;
   box-sizing: border-box;
-  float: left;
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 100%;
   padding: 20px;
   width: 200px;
@@ -75,8 +77,8 @@ a {
 }
 
 .content {
+  margin-left: 200px;
   height: 100%;
-  overflow: scroll;
   padding: 0 10px;
   position: relative;
   width: auto;
@@ -110,4 +112,16 @@ a {
 
 .content ul {
   margin: 10px 20px;
+}
+
+@media print {
+  #sidebar {
+    display: none;
+  }
+  .content {
+    margin-left: 0px;
+  }
+  a:link, a:visited {
+    color: black;
+  }
 }
