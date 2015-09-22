@@ -79,9 +79,17 @@ a {
 .content {
   margin-left: 200px;
   height: 100%;
-  padding: 0 10px;
   position: relative;
   width: auto;
+}
+
+.content a {
+  color: #3472DA;
+  font-weight: bold;
+}
+
+.content h1 {
+  margin-left: 15px;
 }
 
 .set-in {
@@ -112,6 +120,39 @@ a {
 
 .content ul {
   margin: 10px 20px;
+}
+
+.games-container .game {
+  background-size: cover;
+  box-sizing: border-box;
+  color: #d8d8d8;
+  min-height: 200px;
+  padding: 20px;
+}
+
+.games-container .game h2 {
+  color: white;
+  margin-bottom: 30px;
+}
+
+.games-container .game .copy {
+  letter-spacing: 1px;
+}
+
+.games-container .game button {
+  background-color: #ECC968;
+  border: 0;
+  border-radius: 5px;
+  color: #333333;
+  padding: 5px 8px;
+}
+
+.games-container .game .cta-buttons {
+  margin-top: 20px;
+}
+
+.games-container .game .cta-buttons a {
+  margin-right: 15px;
 }
 
 @media print {
