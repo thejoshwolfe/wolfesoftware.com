@@ -84,7 +84,7 @@ a {
 }
 
 .content a {
-  color: #3472DA;
+  color: #1250BA;
   font-weight: bold;
 }
 
@@ -124,10 +124,17 @@ a {
 
 .games-container .game {
   background-size: cover;
+  background-position: 50% 50%;
   box-sizing: border-box;
   color: #d8d8d8;
   min-height: 200px;
   padding: 20px;
+}
+
+.games-container .game.snakefall .copy {
+  background-color: rgba(136, 136, 255, 0.64);
+  box-sizing: border-box;
+  display: inline-block;
 }
 
 .games-container .game h2 {
