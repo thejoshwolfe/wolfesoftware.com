@@ -18,6 +18,10 @@ a {
   vertical-align: middle;
 }
 
+button i.fa {
+  font-size: 1.2em;
+}
+
 #sidebar {
   background: #1250BA;
   box-sizing: border-box;
