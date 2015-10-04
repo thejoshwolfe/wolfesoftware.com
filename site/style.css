@@ -109,6 +109,10 @@ button i.fa {
   font-weight: bold;
 }
 
+.content .my-name {
+  font-size: 2.5em;
+}
+
 .content h1 {
   margin-left: 15px;
 }
@@ -251,12 +255,29 @@ button i.fa {
 }
 
 @media print {
-  #sidebar {
+  #sidebar, .no-print {
     display: none;
   }
   .content {
     margin-left: 0px;
   }
+  .content h1, .content .my-name {
+    font-size: 14pt;
+  }
+  .content .my-name, .content .contact-info {
+    text-align: center;
+    margin: 8px 0px 0px 0px;
+  }
+  .content h2, .content h3 {
+    font-size: 12pt;
+  }
+  .set-in {
+    margin: 8px 0px 0px 30px;
+  }
+  .heading {
+    margin-top: 0px;
+  }
+
   a:link, a:visited {
     color: black;
   }
