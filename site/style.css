@@ -255,7 +255,7 @@ button i.fa {
 }
 
 @media print {
-  #sidebar, .no-print {
+  .no-print {
     display: none;
   }
   .content {

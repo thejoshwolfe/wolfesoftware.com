@@ -5,8 +5,11 @@
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Open+Sans" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <div id="sidebar"></div>
+    <div id="sidebar" class="no-print"></div>
     <div class="content">
+      <div class="set-in no-print">
+        <p>Download as: <a href="/resume/resume.pdf">PDF</a>, <a id="plainTextDownload" href="#">Plain Text</a></p>
+      </div>
       <h1 class="my-name">Josh Wolfe</h1>
       <div class="set-in contact-info">
         <div>
@@ -103,43 +106,53 @@
             <p class="date">July 2015 - current</p>
             <div class="clear"></div>
           </div>
-          A clone of <a href="http://snakebird.noumenongames.com/">Snakebird</a> by Noumenon Games for the browser
-          featuring a level editor to encourage community-made levels.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/snakefall">src</a>]</span>
+          <p>
+            A clone of <a href="http://snakebird.noumenongames.com/">Snakebird</a> by Noumenon Games for the browser
+            featuring a level editor to encourage community-made levels.
+            <span class="no-print">[<a href="https://github.com/thejoshwolfe/snakefall">src</a>]</span>
+          </p>
 
           <div class="heading">
             <h3 class="title">wolfebin</h3>
             <p class="date">August 2011 - current</p>
             <div class="clear"></div>
           </div>
-          Quick and easy file sharing client and server written in Python for the command line.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/wolfebin">src</a>]</span>
+          <p>
+            Quick and easy file sharing client and server written in Python for the command line.
+            <span class="no-print">[<a href="https://github.com/thejoshwolfe/wolfebin">src</a>]</span>
+          </p>
 
           <div class="heading">
             <h3 class="title">consoline</h3>
             <p class="date">June 2011 - December 2012</p>
             <div class="clear"></div>
           </div>
-          Command line program program written in C that uses GNU Readline to manage the stdio of another program.
-          Makes sure a partially typed input line doesn't get tangled up in any asynchronous stdout.
-          Hitting Tab will provide autocomplete suggestions based on every word seen in stdio.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/consoline">src</a>]</span>
+          <p>
+            Command line program program written in C that uses GNU Readline to manage the stdio of another program.
+            Makes sure a partially typed input line doesn't get tangled up in any asynchronous stdout.
+            Hitting Tab will provide autocomplete suggestions based on every word seen in stdio.
+            <span class="no-print">[<a href="https://github.com/thejoshwolfe/consoline">src</a>]</span>
+          </p>
 
           <div class="heading">
             <h3 class="title"><a href="http://superjoe.s3.amazonaws.com/temp/legend-of-swarkland.html">Legend of Swarkland</a></h3>
             <p class="date">January 2015 - current</p>
             <div class="clear"></div>
           </div>
-          Rogue-like hack-n-slash game inspired by Nethack written in C++ and using SDL.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/legend-of-swarkland">src</a>]</span>
+          <p>
+            Rogue-like hack-n-slash game inspired by Nethack written in C++ and using SDL.
+            <span class="no-print">[<a href="https://github.com/thejoshwolfe/legend-of-swarkland">src</a>]</span>
+          </p>
 
           <div class="heading">
             <h3 class="title"><a href="http://board-gamer-2d.wolfesoftware.com/">Board Gamer 2d</a></h3>
             <p class="date">August 2015 - current</p>
             <div class="clear"></div>
           </div>
-          Multiplayer board game and card game simulator for the browser.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/board-gamer-2d">src</a>]</span>
+          <p>
+            Multiplayer board game and card game simulator for the browser.
+            <span class="no-print">[<a href="https://github.com/thejoshwolfe/board-gamer-2d">src</a>]</span>
+          </p>
 
           <div class="heading">
             <h3 class="title">Jax Compiler</h3>
@@ -177,8 +190,10 @@
             <p class="date">August 2008 - December 2010</p>
             <div class="clear"></div>
           </div>
-          Assembler, interpretor, and debugger for a simplified version of the MIPS Assembly language.
-          Written as an educational attempt to create a processor and operating system from scratch.
+          <p>
+            Assembler, interpretor, and debugger for a simplified version of the MIPS Assembly language.
+            Written as an educational attempt to create a processor and operating system from scratch.
+          </p>
           <ul>
             <li>Example program runs two threads that preempt one another with a timer.</li>
             <li>Debugger supports go, step, setting breakpoints, and showing source code and registers.</li>
@@ -197,5 +212,6 @@
       </div>
     </div>
     <script src="/site/a.js"></script>
+    <script src="/site/plainTextDownload.js"></script>
   </body>
 </html>
