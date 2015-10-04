@@ -41,6 +41,7 @@ document.getElementById("plainTextDownload").setAttribute("href", (function() {
         currentSection = {
           heading: textBuffer,
           content: null,
+          level: parseInt(tagName.substring(1), 10),
         }
         textBuffer = "";
         break;
@@ -54,6 +55,7 @@ document.getElementById("plainTextDownload").setAttribute("href", (function() {
   function handleText(text) {
     if (text.trim() === "") return;
     text = text.replace(/\s+/g, " ");
+    // turn unicode to ascii
     text = text.replace(/\u00ae/g, "(R)");
     text = text.replace(/\u2122/g, "(TM)");
     if (textBuffer === "" || textBuffer[textBuffer.length - 1] === "\n") text = text.trimLeft();
@@ -68,9 +70,27 @@ document.getElementById("plainTextDownload").setAttribute("href", (function() {
   }
 
   function renderAsPlainText(sections) {
-    return sections.map(function(section) {
-      if (section.content === "") return section.heading + "\n";
-      return section.heading + "\n" + section.content + "\n\n";
-    }).join("").trimRight();
+    var previousLevel = 1;
+    var nestingJump = 0;
+    var result = sections.map(function(section) {
+      if (section.level !== previousLevel) {
+        nestingJump = section.level - previousLevel;
+        previousLevel = section.level;
+      }
+      var leadingNewlines;
+      if (nestingJump > 1)
+        leadingNewlines = "\n";
+      else
+        leadingNewlines = "\n\n";
+      if (section.content === "") return leadingNewlines + section.heading;
+      if (nestingJump === 2) return leadingNewlines + section.heading + ": " + section.content;
+      return leadingNewlines + section.heading + "\n" + section.content;
+    }).join("").trim();
+    // sanity check for non-ascii
+    var badChars = result.replace(/[\u0000-\u007f]+/g, "");
+    if (badChars.length !== 0) {
+      alert("plain text rendering contains non-ascii characters: " + badChars);
+    }
+    return result;
   }
 })());
