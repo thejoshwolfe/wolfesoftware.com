@@ -1,7 +1,10 @@
 document.getElementById("plainTextDownload").setAttribute("href", (function() {
-  var finalText = "";
+  var sections = [];
+  var currentSection = null;
+  var textBuffer = "";
   visit(document.body);
-  return "data:text/plain;charset=US-ASCII," + encodeURIComponent(finalText);
+  flushCurrentSection();
+  return "data:text/plain;charset=US-ASCII," + encodeURIComponent(renderAsPlainText(sections));
 
   function visit(node) {
     if (node.nodeType === Node.TEXT_NODE) {
@@ -10,17 +13,41 @@ document.getElementById("plainTextDownload").setAttribute("href", (function() {
     if (node.nodeType !== Node.ELEMENT_NODE) return;
     if (node.classList.contains("no-print")) return;
     var tagName = node.tagName.toLowerCase();
-    if (tagName === "li") {
-      finalText += " * ";
+    switch (tagName) {
+      case "li":
+        textBuffer += " * ";
+        break;
+      case "h1":
+      case "h2":
+      case "h3":
+        flushCurrentSection();
+        break;
+      case "ul":
+        textBuffer = textBuffer.trimRight();
+        textBuffer += "\n";
+        break;
     }
     var children = node.childNodes;
     for (var i = 0; i < children.length; i++) {
       visit(children[i]);
     }
-    if (["h1", "h2", "h3", "div", "p", "li"].indexOf(tagName) !== -1) {
-      if (finalText !== "" && finalText[finalText.length - 1] !== "\n") {
-        finalText += "\n";
-      }
+    switch (tagName) {
+      case "li":
+        textBuffer += "\n";
+        break;
+      case "h1":
+      case "h2":
+      case "h3":
+        currentSection = {
+          heading: textBuffer,
+          content: null,
+        }
+        textBuffer = "";
+        break;
+    }
+    if (node.classList.contains("date")) {
+      currentSection.heading += " (" + textBuffer + ")";
+      textBuffer = "";
     }
   }
 
@@ -29,7 +56,21 @@ document.getElementById("plainTextDownload").setAttribute("href", (function() {
     text = text.replace(/\s+/g, " ");
     text = text.replace(/\u00ae/g, "(R)");
     text = text.replace(/\u2122/g, "(TM)");
-    if (finalText === "" || finalText[finalText.length - 1] === "\n") text = text.trimLeft();
-    finalText += text;
+    if (textBuffer === "" || textBuffer[textBuffer.length - 1] === "\n") text = text.trimLeft();
+    textBuffer += text;
+  }
+
+  function flushCurrentSection() {
+    if (currentSection == null) return;
+    currentSection.content = textBuffer.trim();
+    sections.push(currentSection);
+    textBuffer = "";
+  }
+
+  function renderAsPlainText(sections) {
+    return sections.map(function(section) {
+      if (section.content === "") return section.heading + "\n";
+      return section.heading + "\n" + section.content + "\n\n";
+    }).join("").trimRight();
   }
 })());
