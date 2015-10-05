@@ -1,4 +1,4 @@
-var sidebarContent = '' +
+document.getElementById("sidebar").innerHTML = '' +
   '<div class="avatar bg-cover" style="background-image:url(/site/josh.jpg)"></div>' +
   '<h3>Josh Wolfe</h3>' +
   '<div class="fancy-divider-line"></div>' +
@@ -15,4 +15,3 @@ var sidebarContent = '' +
   '  <li><a href="/resume">Resume</a></li>' +
   '  <li><a href="github.com/thejoshwolfe">Github</a></li>' +
   '</ul>';
-document.getElementById("sidebar").innerHTML = sidebarContent;
