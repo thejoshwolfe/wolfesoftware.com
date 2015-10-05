@@ -42,6 +42,7 @@ document.getElementById("plainTextDownload").setAttribute("href", (function() {
           heading: textBuffer,
           content: null,
           level: parseInt(tagName.substring(1), 10),
+          classList: node.classList,
         }
         textBuffer = "";
         break;
@@ -70,21 +71,21 @@ document.getElementById("plainTextDownload").setAttribute("href", (function() {
   }
 
   function renderAsPlainText(sections) {
-    var previousLevel = 1;
-    var nestingJump = 0;
     var result = sections.map(function(section) {
-      if (section.level !== previousLevel) {
-        nestingJump = section.level - previousLevel;
-        previousLevel = section.level;
+      var oneLine = section.classList.contains("plain-text-one-line");
+      var result = "";
+      if (oneLine) {
+        result = "\n" + section.heading + ": " + section.content;
+      } else if (section.content === "") {
+        var length = section.heading.length;
+        result = "\n\n\n" + section.heading + "\n";
+        for (var i = 0; i < length; i++) {
+          result += "=";
+        }
+      } else {
+        result = "\n\n" + section.heading + "\n" + section.content;
       }
-      var leadingNewlines;
-      if (nestingJump > 1)
-        leadingNewlines = "\n";
-      else
-        leadingNewlines = "\n\n";
-      if (section.content === "") return leadingNewlines + section.heading;
-      if (nestingJump === 2) return leadingNewlines + section.heading + ": " + section.content;
-      return leadingNewlines + section.heading + "\n" + section.content;
+      return result;
     }).join("").trim();
     // sanity check for non-ascii
     var badChars = result.replace(/[\u0000-\u007f]+/g, "");
