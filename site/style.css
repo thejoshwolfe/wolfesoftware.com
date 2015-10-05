@@ -275,7 +275,7 @@ button i.fa {
     margin: 8px 0px 0px 30px;
   }
   .heading {
-    margin-top: 0px;
+    margin: 0px 0px 0px -20px;
   }
 
   a:link, a:visited {
