@@ -13,5 +13,5 @@ document.getElementById("sidebar").innerHTML = '' +
   '    </ul>' +
   '  </li>' +
   '  <li><a href="/resume">Resume</a></li>' +
-  '  <li><a href="github.com/thejoshwolfe">Github</a></li>' +
+  '  <li><a href="http://github.com/thejoshwolfe">Github</a></li>' +
   '</ul>';
