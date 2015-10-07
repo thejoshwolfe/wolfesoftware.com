@@ -73,19 +73,18 @@ document.getElementById("plainTextDownload").setAttribute("href", (function() {
   function renderAsPlainText(sections) {
     var result = sections.map(function(section) {
       var oneLine = section.classList.contains("plain-text-one-line");
-      var result = "";
       if (oneLine) {
-        result = "\n" + section.heading + ": " + section.content;
-      } else if (section.content === "") {
+        return "\n" + section.heading + ": " + section.content;
+      }
+      if (section.content === "") {
         var length = section.heading.length;
-        result = "\n\n\n" + section.heading + "\n";
+        var result = "\n\n\n" + section.heading + "\n";
         for (var i = 0; i < length; i++) {
           result += "=";
         }
-      } else {
-        result = "\n\n" + section.heading + "\n" + section.content;
+        return result;
       }
-      return result;
+      return "\n\n" + section.heading + "\n" + wordWrap(section.content);
     }).join("").trim();
     // sanity check for non-ascii
     var badChars = result.replace(/[\u0000-\u007f]+/g, "");
@@ -93,5 +92,24 @@ document.getElementById("plainTextDownload").setAttribute("href", (function() {
       alert("plain text rendering contains non-ascii characters: " + badChars);
     }
     return result;
+  }
+
+  function wordWrap(content) {
+    return content.split("\n").map(function(paragraph) {
+      if (paragraph === "") return "";
+      var indentation = "";
+      if (paragraph.substring(0, 3) === " * ") indentation = "   ";
+      var lineLength = 80 - indentation.length;
+      var result = "";
+      var index = 0;
+      while (index + lineLength < paragraph.length) {
+        var nextIndex = paragraph.lastIndexOf(" ", index + lineLength);
+        result += paragraph.substring(index, nextIndex);
+        result += "\n" + indentation;
+        index = nextIndex + 1;
+      }
+      result += paragraph.substring(index);
+      return result;
+    }).join("\n");
   }
 })());
