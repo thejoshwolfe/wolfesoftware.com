@@ -52,15 +52,19 @@
         </p>
         <ul>
           <li>Wrote a Makefile generator to implement all of the IDE's build steps in a way that is consistent inside and outside the GUI.</li>
-          <li>Wrote an application/library interdependency system that manages build-time integration, system-wide metadata configuration, and deploy-time file system management.</li>
-          <li>Wrote an options specification system to allow general build options and options specific to certain target architectures and debug/production variants.</li>
           <li>Wrote a Gantt chart viewer that shows the timeline of when each thread ran on the embedded system.</li>
+          <li>Wrote an application/library interdependency system that manages build-time integration, system-wide metadata configuration, and deploy-time file system management.</li>
           <li>Extended the debugger interface to support lazy pointer following, variable byte sizes, and more.</li>
         </ul>
         <p>
-          I also wrote and maintained dozens of internal tools written in Python that
-          automated tasks such as running tests and indexing documentation.
+          I also wrote and maintained dozens of internal tools:
         </p>
+        <ul>
+          <li>Rearchitected the embedded test harness to run about 10x faster by eliminating extraneous network connections and using non-volatile storage to resume after target reboot. Written in C.</li>
+          <li>Created a prototype interpreter for a shell-like language to unify various target-side utilities. Written in C. Wrote an accompanying editor for Eclipse/OpenArbor written in Java.</li>
+          <li>Created and maintained a simple GUI application for the sales team to generate licenses. Written in Java/SWT.</li>
+          <li>Rewrote the source documentation scraper to support more flexible and prettier tagging syntax as well as a standard command-line API. Written in Python.</li>
+        </ul>
         <div class="heading">
           <h3 class="title">Contract Work</h3>
           <p class="date">June 2008 - March 2011</p>

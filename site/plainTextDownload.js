@@ -35,6 +35,9 @@ document.getElementById("plainTextDownload").setAttribute("href", (function() {
       case "li":
         textBuffer += "\n";
         break;
+      case "ul":
+        textBuffer += "\n";
+        break;
       case "h1":
       case "h2":
       case "h3":
