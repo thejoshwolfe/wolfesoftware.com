@@ -22,6 +22,12 @@ button {
   background-size: cover;
 }
 
+.gu-container .bg-cover h2 {
+  background-color: rgba(0,0,0,0.4);
+  color: white;
+  text-align: center;
+}
+
 .table-cell {
   display: table-cell;
   vertical-align: middle;
@@ -193,57 +199,42 @@ button i.fa {
   margin-left: 20px;
   margin-right: 20px;
 }
-
+/*
 .gu-container {
   display: -webkit-flex;
   display: flex;
   flex-direction: column;
 }
+*/
 
-.gu-container .gu-row {
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: row;
-}
-
-.gu-container .gu-row .gu {
-  flex: 1;
-}
-
-.gu-container .gu-row .gu .header {
+.gu-container .gu .header {
+  background-color: #0D429C;
   color: white;
   display: table;
-  height: 200px;
+  height: 77px;
   text-align: center;
-  width: 101%;
+  width: 100%;
 }
 
-.gu-container .gu-row .gu .header h2 {
+.gu-container .gu .header h2 {
   background-color: rgba(0,0,0,0.6);
   font-family: 'Alegreya Sans', 'Open Sans', sans-serif;
   font-size: 2em;
 }
 
-.gu-container .gu-row .gu .copy .item {
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+.gu-container .gu .copy {
+  display: -webkit-flex;
+  display: flex;
+}
+
+.gu-container .gu .copy .item {
+  flex: 1;
   padding: 10px;
 }
 
-.gu-container .gu-row .gu .copy .item:last-of-type {
-  border-bottom: 0;
-}
-
-.gu-container .gu-row .gu .cta-buttons {
+.gu-container .gu .cta-buttons {
   margin-bottom: 5px;
   margin-top: 10px;
-}
-
-.gu-container .gu-row .gu:hover {
-  background-color: rgba(18, 80, 186, 0.19);
-}
-
-.gu-container .gu-row .gu .copy .item:hover {
-  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .gu-container .gu-row .gu .copy .item:hover button {
