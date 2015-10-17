@@ -22,12 +22,6 @@ button {
   background-size: cover;
 }
 
-.gu-container .bg-cover h2 {
-  background-color: rgba(0,0,0,0.4);
-  color: white;
-  text-align: center;
-}
-
 .table-cell {
   display: table-cell;
   vertical-align: middle;
@@ -156,28 +150,11 @@ button i.fa {
   background-size: cover;
   background-position: 50% 50%;
   box-sizing: border-box;
-  color: #d8d8d8;
   min-height: 200px;
   padding: 20px 0;
 }
 
-.games-container .game.snakefall .copy {
-  background-color: rgba(136, 136, 255, 0.64);
-  box-sizing: border-box;
-  display: inline-block;
-}
-
-.games-container .game h2 {
-  background-color: rgba(0,0,0,0.6);
-  color: white;
-  font-family: 'Alegreya Sans', 'Open Sans', sans-serif;
-  font-size: 2em;
-  margin-bottom: 30px;
-  padding-left: 20px;
-}
-
 .games-container .game .copy {
-  letter-spacing: 1px;
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -199,15 +176,8 @@ button i.fa {
   margin-left: 20px;
   margin-right: 20px;
 }
-/*
-.gu-container {
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: column;
-}
-*/
 
-.gu-container .gu .header {
+.header {
   background-color: #0D429C;
   color: white;
   display: table;
@@ -216,10 +186,12 @@ button i.fa {
   width: 100%;
 }
 
-.gu-container .gu .header h2 {
+.header h2 {
   background-color: rgba(0,0,0,0.6);
+  color: white;
   font-family: 'Alegreya Sans', 'Open Sans', sans-serif;
   font-size: 2em;
+  text-align: center;
 }
 
 .gu-container .gu .copy {
