@@ -117,6 +117,15 @@ button i.fa {
   margin-left: 15px;
 }
 
+.item {
+  clear: both;
+}
+
+.copy {
+  float: right;
+  width: calc(100% - 201px);
+}
+
 .set-in {
   margin: 10px 30px;
 }
@@ -146,19 +155,6 @@ button i.fa {
   margin: 10px 20px;
 }
 
-.games-container .game {
-  background-size: cover;
-  background-position: 50% 50%;
-  box-sizing: border-box;
-  min-height: 200px;
-  padding: 20px 0;
-}
-
-.games-container .game .copy {
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
 .content button {
   background-color: #ECC968;
   border: 0;
@@ -171,19 +167,14 @@ button i.fa {
   margin-right: 15px;
 }
 
-.games-container .game .cta-buttons {
-  margin-top: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
 .header {
   background-color: #0D429C;
   color: white;
-  display: table;
-  height: 77px;
+  display: inline-block;
+  float: left;
+  height: 200px;
   text-align: center;
-  width: 100%;
+  width: 200px;
 }
 
 .header h2 {
@@ -192,25 +183,6 @@ button i.fa {
   font-family: 'Alegreya Sans', 'Open Sans', sans-serif;
   font-size: 2em;
   text-align: center;
-}
-
-.gu-container .gu .copy {
-  display: -webkit-flex;
-  display: flex;
-}
-
-.gu-container .gu .copy .item {
-  flex: 1;
-  padding: 10px;
-}
-
-.gu-container .gu .cta-buttons {
-  margin-bottom: 5px;
-  margin-top: 10px;
-}
-
-.gu-container .gu-row .gu .copy .item:hover button {
-  background-color: #ECD28A;
 }
 
 .content .cta-buttons a:hover button {
