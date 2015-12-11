@@ -49,8 +49,7 @@ button i.fa {
 
 #sidebar h3 {
   color: #EEEEEE;
-  font-family: 'Alegreya Sans', 'Open Sans', sans-serif;
-  font-size: 1.6em;
+  font-size: 1.4em;
   font-weight: 200;
   margin: 10px 0;
   text-align: center;
@@ -78,12 +77,12 @@ button i.fa {
   text-align: center;
 }
 
-#sidebar .nav li a {
+#sidebar a {
   color: #DFE4EC;
   text-decoration: none;
 }
 
-#sidebar .nav li a:hover {
+#sidebar a:hover {
   color: white;
 }
 
