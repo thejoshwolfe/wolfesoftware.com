@@ -120,6 +120,10 @@ button i.fa {
   clear: both;
 }
 
+img.header.bg-cover {
+    margin: 10px 10px 0 10px;
+}
+
 .copy {
   float: right;
   width: calc(100% - 201px);
