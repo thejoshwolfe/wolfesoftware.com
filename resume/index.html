@@ -31,7 +31,7 @@
         </div>
         <div>
           <h3 class="plain-text-one-line">Frameworks</h3>
-          <p>Node.js, SWT/SWTBot, SDL, AngularJS, HTML/CSS, Qt.</p>
+          <p>Node.js, LLVM, Bare Metal C, SWT/SWTBot, SDL, HTML/CSS, Qt, Deos (embedded RTOS).</p>
         </div>
         <div>
           <h3 class="plain-text-one-line">Operating Systems</h3>
@@ -55,17 +55,13 @@
           <li>Designed and created a <b>Time Map</b> tool using a Gantt chart to visualize the scheduling and execution timeline of all threads and interrupts on the embedded system.</li>
           <li>Implemented a single button that would save edits, recompile, upload the new file, restart the target, and attach the debugger.</li>
           <li>Extended the IDE's <b>debugger</b> to add support for lazy pointer expansion, variable byte sizes, and other features.</li>
-        </ul>
-        <p>
-          I also wrote and maintained dozens of internal tools:
-        </p>
-        <ul>
           <li>Redesigned an embedded <b>test harness</b> to run 10x faster by eliminating extraneous network connections and using non-volatile storage to resume after target reboot. Written in C.</li>
           <li>Created an embedded interpreter for a Lisp-like <b>shell language</b> for Deos. This unified various target-side utilities by providing an interactive interface from the PC to the Deos API's on the embedded target. Written in C.</li>
           <li>Enhanced Eclipse/OpenArbor with <b>editor support</b> for the new Deos shell language. Written in Java.</li>
-          <li>Automated several steps of the software development process with scripts that scrape Subversion and Bugzilla.</li>
-          <li>Created and maintained a <b>license generator</b> GUI application for the sales team. Written in Java/SWT.</li>
+          <li><b>Automated</b> several steps of the software development process with scripts that scrape Subversion and Bugzilla.</li>
           <li>Reimplemented an internal <b>source code scraper</b> to support more flexible trace tag syntax and command-line API. This greatly simplified usage from a Makefile. Written in Python.</li>
+          <li>Designed an <b>embedded file system</b> with a goal of optimal throughput efficiency without risk of metadata corruption from power loss.</li>
+          <li>Created and maintained a <b>license generator</b> GUI application for the sales team. Written in Java/SWT.</li>
         </ul>
         <div class="heading">
           <h3 class="title">Contract Work</h3>
