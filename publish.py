@@ -14,3 +14,7 @@ for item in [
   cmd = ["rsync", "-vuza", item, "server:public_http/" + item]
   print(" ".join(cmd))
   subprocess.check_call(cmd)
+
+  cmd = ["ssh", "server", "find", "public_http/" + item, "-type", "f", "-exec", "chmod", "-R", "+r", "{}", "+"]
+  print(" ".join(cmd))
+  subprocess.check_call(cmd)
