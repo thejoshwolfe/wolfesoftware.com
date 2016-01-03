@@ -11,7 +11,7 @@ document.getElementById("plainTextDownload").setAttribute("href", (function() {
       handleText(node.textContent);
     }
     if (node.nodeType !== Node.ELEMENT_NODE) return;
-    if (node.classList.contains("no-print")) return;
+    if (node.classList.contains("no-print") || node.classList.contains("hide")) return;
     var tagName = node.tagName.toLowerCase();
     switch (tagName) {
       case "li":

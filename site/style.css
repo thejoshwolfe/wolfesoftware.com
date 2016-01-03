@@ -191,6 +191,10 @@ img.header.bg-cover {
   background-color: #FFEDB9 !important;
 }
 
+.hide {
+  display: none;
+}
+
 @media print {
   .no-print {
     display: none;
