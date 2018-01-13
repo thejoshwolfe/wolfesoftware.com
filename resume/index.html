@@ -24,7 +24,7 @@
       <div class="set-in">
         <div>
           <h3 class="plain-text-one-line">Languages</h3>
-          <p>C, C++, Java, Python, JavaScript, MIPS Assembly, C#, and more.</p>
+          <p>C++11, C99, JavaScript (ES6+), Python 2/3, Java 7, MIPS Assembly, C# 3.5, and more.</p>
         </div>
         <div>
           <h3 class="plain-text-one-line">Development Environments</h3>
@@ -32,12 +32,13 @@
         </div>
         <div>
           <h3 class="plain-text-one-line">Frameworks</h3>
-          <p>Node.js, LLVM, Bare Metal C, SWT/SWTBot, SDL, HTML/CSS, Qt, Deos (embedded RTOS), and more.</p>
-<!--
- Frameworks:
- 01234567890123456789012345678901234567890123456789012345678901234567890123456789
--->
+          <p>Node.js, V8, LLVM, Bare Metal C, SWT, SDL, HTML/CSS, Qt, Deos (embedded RTOS), and more.</p>
         </div>
+<!--
+ Frameworks: 
+ 01234567890123456789012345678901234567890123456789012345678901234567890123456789
+ 80-120:                                                                         0123456789012345678901234567890123456789
+-->
         <div>
           <h3 class="plain-text-one-line">Operating Systems</h3>
           <p>Linux, Windows.</p>
@@ -52,8 +53,17 @@
           <div class="clear"></div>
         </div>
         <p>
-          Member of the compilers team.
+          Made open-source contributions to JavaScript by implementing features in
+          <a href="https://chromium-review.googlesource.com/q/author:jwolfe%2540igalia.com">V8/Chromium</a>
+          and writing standardized tests for
+          <a href="https://github.com/tc39/test262/pulls?utf8=%E2%9C%93&q=is%3Apr+author%3Athejoshwolfe">Test262</a>.
         </p>
+        <ul>
+          <li>Implemented various internationalization standard library features in V8.</li>
+          <li>Contributed many of the BigInt tests in Test262.</li>
+          <li>Implemented trailing commas in function parameter declaration and invocation in V8.</li>
+          <li>Fixed various conformance issues in V8.</li>
+        </ul>
         <div class="heading">
           <h3 class="title"><a href="http://www.ddci.com/">DDC-I, Inc.</a></h3>
           <p class="date">December 2008 - January 2015</p>
@@ -67,14 +77,14 @@
         <ul>
           <li>Developed a <b>Makefile generator</b> to implement the IDE's build steps in a way that is consistent both inside and outside the GUI.</li>
           <li>Designed and created a <b>Time Map</b> tool using a Gantt chart to visualize the scheduling and execution timeline of all threads and interrupts on the embedded system.</li>
-          <li>Implemented a single button that would save edits, recompile, upload the new file, restart the target, and attach the debugger.</li>
+          <li class="hide">Implemented a single button that would save edits, recompile, upload the new file, restart the target, and attach the debugger.</li>
           <li>Extended the IDE's <b>debugger</b> to add support for lazy pointer expansion, variable byte sizes, and other features.</li>
           <li>Redesigned an embedded <b>test harness</b> to run 10x faster by eliminating extraneous network connections and using non-volatile storage to resume after target reboot. Written in C.</li>
           <li>Created an embedded interpreter for a Lisp-like <b>shell language</b> for Deos. This unified various target-side utilities by providing an interactive interface from the PC to the Deos API's on the embedded target. Written in C.</li>
-          <li>Enhanced Eclipse/OpenArbor with <b>editor support</b> for the new Deos shell language. Written in Java.</li>
+          <li class="hide">Enhanced Eclipse/OpenArbor with <b>editor support</b> for the new Deos shell language. Written in Java.</li>
           <li><b>Automated</b> several steps of the software development process with scripts that scrape Subversion and Bugzilla.</li>
-          <li>Reimplemented an internal <b>source code scraper</b> to support more flexible trace tag syntax and command-line API. This greatly simplified usage from a Makefile. Written in Python.</li>
-          <li>Designed an <b>embedded file system</b> with a goal of optimal throughput efficiency without risk of metadata corruption from power loss.</li>
+          <li class="hide">Reimplemented an internal <b>source code scraper</b> to support more flexible trace tag syntax and command-line API.</li>
+          <li class="hide">Designed an <b>embedded file system</b> with a goal of optimal throughput efficiency without risk of metadata corruption from power loss.</li>
         </ul>
         <div class="heading">
           <h3 class="title">Contract Work</h3>
@@ -94,6 +104,28 @@
       <h1>Open Source Projects</h1>
       <div class="set-in">
         <div class="heading">
+          <h3 class="title"><a href="http://ziglang.org/">Zig</a></h3>
+          <p class="date">November 2015 - current</p>
+          <div class="clear"></div>
+        </div>
+        <p>
+          Consultant and contributor to Andrew Kelley's programming language, Zig.
+          Designed and implemented grammar/parsing, expression semantics, C-to-Zig translation, and more.
+          <span class="no-print">[<a href="https://github.com/zig-lang/zig">src</a>]</span>
+        </p>
+
+        <div class="heading">
+          <h3 class="title"><a href="https://www.npmjs.com/package/yazl">yazl</a> and <a href="https://www.npmjs.com/package/yauzl">yauzl</a></h3>
+          <p class="date">August 2014 - current</p>
+          <div class="clear"></div>
+        </div>
+        <p>
+          Zip and unzip libraries for <a href=https://nodejs.org/">Node.js</a>.
+          As of January 2018, the npm registry reports 4.7M downloads per month for yauzl.
+          <span class="no-print">[<a href="https://github.com/thejoshwolfe/yazl">src</a>, <a href="https://github.com/thejoshwolfe/yauzl">src</a>]</span>
+        </p>
+
+        <div class="heading">
           <h3 class="title"><a href="http://groovebasin.com/">Groove Basin</a></h3>
           <p class="date">January 2012 - current</p>
           <div class="clear"></div>
@@ -105,26 +137,25 @@
           <span class="no-print">[<a href="https://github.com/andrewrk/groovebasin">src</a>]</span>
         </p>
 
-        <div class="heading hide">
-          <h3 class="title"><a href="http://wolfesoftware.com/vapor/">Vapor</a></h3>
-          <p class="date">March 2012 - current</p>
+        <div class="heading">
+          <h3 class="title"><a href="http://wolfesoftware.com/legend-of-swarkland/">Legend of Swarkland</a></h3>
+          <p class="date">January 2015 - current</p>
           <div class="clear"></div>
         </div>
-        <p class="hide">
-          Action platformer game work in progress.
-          Uses the Box2D physics engine for JavaScript.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/vapor">src</a>]</span>
+        <p>
+          Rogue-like hack-n-slash game inspired by Nethack written in C++ using SDL.
+          <span class="no-print">[<a href="https://github.com/thejoshwolfe/legend-of-swarkland">src</a>]</span>
         </p>
 
-        <div class="heading hide">
-          <h3 class="title">Prismoid</h3>
-          <p class="date">June 2011 - current</p>
+        <div class="heading">
+          <h3 class="title"><a href="http://wolfesoftware.com/snakefall/">Snakefall</a></h3>
+          <p class="date">July 2015 - current</p>
           <div class="clear"></div>
         </div>
-        <p class="hide">
-          2D physics engine for fixed-orientation convex polygons.
-          Designed for correctness rather than large-scale performance.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/prismoid">src</a>]</span>
+        <p>
+          A clone of <a href="http://snakebird.noumenongames.com/">Snakebird</a> by Noumenon Games for the browser
+          featuring a level editor to encourage community-made levels.
+          <span class="no-print">[<a href="https://github.com/thejoshwolfe/snakefall">src</a>]</span>
         </p>
 
         <div class="heading hide">
@@ -139,28 +170,6 @@
         </p>
 
         <div class="heading">
-          <h3 class="title"><a href="https://www.npmjs.com/package/yazl">yazl</a> and <a href="https://www.npmjs.com/package/yauzl">yauzl</a></h3>
-          <p class="date">August 2014 - current</p>
-          <div class="clear"></div>
-        </div>
-        <p>
-          Zip and unzip libraries for <a href=https://nodejs.org/">Node.js</a>.
-          As of March 2016, the npm registry reports 700K downloads per month for yauzl.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/yazl">src</a>, <a href="https://github.com/thejoshwolfe/yauzl">src</a>]</span>
-        </p>
-
-        <div class="heading">
-          <h3 class="title"><a href="http://wolfesoftware.com/snakefall/">Snakefall</a></h3>
-          <p class="date">July 2015 - current</p>
-          <div class="clear"></div>
-        </div>
-        <p>
-          A clone of <a href="http://snakebird.noumenongames.com/">Snakebird</a> by Noumenon Games for the browser
-          featuring a level editor to encourage community-made levels.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/snakefall">src</a>]</span>
-        </p>
-
-        <div class="heading">
           <h3 class="title">wolfebin</h3>
           <p class="date">August 2011 - current</p>
           <div class="clear"></div>
@@ -168,26 +177,6 @@
         <p>
           Quick and easy file sharing client and server written in Python for the command line.
           <span class="no-print">[<a href="https://github.com/thejoshwolfe/wolfebin">src</a>]</span>
-        </p>
-
-        <div class="heading">
-          <h3 class="title">consoline</h3>
-          <p class="date">June 2011 - December 2012</p>
-          <div class="clear"></div>
-        </div>
-        <p>
-          GNU Readline wrapper written in C with better asynchronous input/output support.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/consoline">src</a>]</span>
-        </p>
-
-        <div class="heading">
-          <h3 class="title"><a href="http://wolfesoftware.com/legend-of-swarkland/">Legend of Swarkland</a></h3>
-          <p class="date">January 2015 - current</p>
-          <div class="clear"></div>
-        </div>
-        <p>
-          Rogue-like hack-n-slash game inspired by Nethack written in C++ and using SDL.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/legend-of-swarkland">src</a>]</span>
         </p>
 
         <div class="heading">
@@ -260,6 +249,38 @@
         </div>
         <p>
           REPL-enabled interpretor for performing mundane matrix operations to check my work in Linear Algebra class.
+        </p>
+
+        <div class="hide heading">
+          <h3 class="title">consoline</h3>
+          <p class="date">June 2011 - December 2012</p>
+          <div class="clear"></div>
+        </div>
+        <p class="hide">
+          GNU Readline wrapper written in C with better asynchronous input/output support.
+          <span class="no-print">[<a href="https://github.com/thejoshwolfe/consoline">src</a>]</span>
+        </p>
+
+        <div class="heading hide">
+          <h3 class="title"><a href="http://wolfesoftware.com/vapor/">Vapor</a></h3>
+          <p class="date">March 2012 - current</p>
+          <div class="clear"></div>
+        </div>
+        <p class="hide">
+          Action platformer game work in progress.
+          Uses the Box2D physics engine for JavaScript.
+          <span class="no-print">[<a href="https://github.com/thejoshwolfe/vapor">src</a>]</span>
+        </p>
+
+        <div class="heading hide">
+          <h3 class="title">Prismoid</h3>
+          <p class="date">June 2011 - current</p>
+          <div class="clear"></div>
+        </div>
+        <p class="hide">
+          2D physics engine for fixed-orientation convex polygons.
+          Designed for correctness rather than large-scale performance.
+          <span class="no-print">[<a href="https://github.com/thejoshwolfe/prismoid">src</a>]</span>
         </p>
       </div>
 
