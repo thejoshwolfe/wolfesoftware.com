@@ -16,7 +16,7 @@
       <h1 class="my-name">Josh Wolfe</h1>
       <div class="set-in contact-info">
         <div>
-          <p><a href="mailto:thejoshwolfe@gmail.com">thejoshwolfe@gmail.com</a> - Phoenix, AZ</p>
+          <p><a href="mailto:thejoshwolfe@gmail.com">thejoshwolfe@gmail.com</a> - New York, NY</p>
         </div>
       </div>
 
@@ -24,21 +24,12 @@
       <div class="set-in">
         <div>
           <h3 class="plain-text-one-line">Languages</h3>
-          <p>C++11, C99, JavaScript (ES6+), Python 2/3, Java 7, MIPS Assembly, C# 3.5, and more.</p>
-        </div>
-        <div>
-          <h3 class="plain-text-one-line">Development Environments</h3>
-          <p>VIM, Eclipse, Visual Studio, Qt Creator, GDB.</p>
+          <p>Python, C and C++, JavaScript, Go, Zig, Java, MIPS Assembly, C#.</p>
         </div>
         <div>
           <h3 class="plain-text-one-line">Frameworks</h3>
-          <p>Node.js, V8, LLVM, Bare Metal C, SWT, SDL, HTML/CSS, Qt, Deos (embedded RTOS), and more.</p>
+          <p>Node.js, V8, LLVM, Bare Metal C, SWT, SDL, HTML/CSS, Qt, and more.</p>
         </div>
-<!--
- Frameworks: 
- 01234567890123456789012345678901234567890123456789012345678901234567890123456789
- 80-120:                                                                         0123456789012345678901234567890123456789
--->
         <div>
           <h3 class="plain-text-one-line">Operating Systems</h3>
           <p>Linux, Windows.</p>
@@ -47,11 +38,33 @@
 
       <h1>Professional Experience</h1>
       <div class="set-in">
+
         <div class="heading">
-          <h3 class="title"><a href="https://okcupid.com/">OkCupid</a></h3>
+          <h3 class="title"><a href="https://okcupid.com/">OkCupid</a> and <a href="https://archerapp.com/">Archer</a></h3>
           <p class="date">April 2018 - current</p>
           <div class="clear"></div>
         </div>
+        <p>
+          Designed and developed backend microservices and infrastructure tooling for two dating apps: OkCupid with a 20-year legacy and millions of daily active users, and Archer, a quickly growing new product I helped create from scratch.
+        </p>
+        <ul>
+          <li>Researched and documented several legacy systems that no one still working at the company knew how to maintain.</li>
+          <li>Overhauled OkCupid's Boost feature so that it performed as expected.</li>
+          <li>Co-architected a <b>re-design</b> of OkCupid's legacy backend to use <b>modern technologies</b>: Go, Kafka, gRPC, DynamoDB, and more.</li>
+          <li>Partially migrated OkCupid's 250+ backend microservices from an on-prem data center <b>to the cloud</b>, incrementally introducing Docker, Kubernetes, and other new technologies while maintaining <b>high availability</b>.</li>
+          <li>Migrated OkCupid out of the cloud and back into an on-prem data center to <b>save cost</b>.</li>
+          <li>Learned the hard way the value of incremental milestones in large projects when I attempted to overhaul OkCupid's geolocation database all at once. The project never shipped.</li>
+          <li>Put my learnings into practice as <b>Technical Project Manager</b> for the Core Infrastructure team for over a year. Coordinated with the Ops team, and managed projects for myself and 1-3 other engineers.</li>
+          <li><b>Co-architected Archer's backend from scratch.</b></li>
+          <li>Conducted <b>technical interviews</b> for hiring 8 new employees.</li>
+          <li>Gave several <b>tech talks</b> and demos on subjects such as Kubernetes, high availability service discovery, and how to design more inclusive software by avoiding subtly racist pitfalls that most modern programming languges have built into their string type.</li>
+          <li>Implemented and tuned a system for general-purpose <b>autoscaling in Kubernetes</b> for Archer's microservices.</li>
+          <li>Rebuilt and <b>optimized</b> Archer's MSK (Kafka) cluster and performed a zero-downtime migration to it to reduce costs by 5x.</li>
+          <li>Created several internal tools for searching and managing <b>source code</b> across dozens of git repos.</li>
+          <li>Found and fixed a year-old <b>race condition bug</b> with the microservice shutdown procedure that was causing requests to time out during rolling deployment.</li>
+          <li>Implemented an enhancement to command line developer tools to automatically download required dependencies, dramatically reducing the difficulty of workstation setup.</li>
+        </ul>
+
         <div class="heading">
           <h3 class="title"><a href="https://www.igalia.com/">Igalia, S.L.</a></h3>
           <p class="date">May 2016 - Jan 2018</p>
@@ -69,6 +82,7 @@
           <li>Implemented <b>trailing commas</b> in function parameter declaration and invocation in V8.</li>
           <li>Fixed various <b>conformance</b> issues in V8.</li>
         </ul>
+
         <div class="heading">
           <h3 class="title"><a href="http://www.ddci.com/">DDC-I, Inc.</a></h3>
           <p class="date">December 2008 - January 2015</p>
@@ -82,14 +96,13 @@
         <ul>
           <li>Developed a <b>Makefile generator</b> to implement the IDE's build steps in a way that is consistent both inside and outside the GUI.</li>
           <li>Designed and created a <b>Time Map</b> tool using a Gantt chart to visualize the scheduling and execution timeline of all threads and interrupts on the embedded system.</li>
-          <li class="hide">Implemented a single button that would save edits, recompile, upload the new file, restart the target, and attach the debugger.</li>
+          <li>Implemented a single button that would save edits, recompile, upload the binary, restart the target, and attach the debugger.</li>
           <li>Extended the IDE's <b>debugger</b> to add support for lazy pointer expansion, variable byte sizes, and other features.</li>
           <li>Redesigned an embedded <b>test harness</b> to run 10x faster by eliminating extraneous network connections and using non-volatile storage to resume after target reboot. Written in C.</li>
           <li>Created an embedded interpreter for a Lisp-like <b>shell language</b> for Deos. This unified various target-side utilities by providing an interactive interface from the PC to the Deos API's on the embedded target. Written in C.</li>
-          <li class="hide">Enhanced Eclipse/OpenArbor with <b>editor support</b> for the new Deos shell language. Written in Java.</li>
+          <li>Enhanced Eclipse/OpenArbor with <b>editor support</b> for the new Deos shell language. Written in Java.</li>
           <li><b>Automated</b> several steps of the software development process with scripts that scrape Subversion and Bugzilla.</li>
-          <li class="hide">Reimplemented an internal <b>source code scraper</b> to support more flexible trace tag syntax and command-line API.</li>
-          <li class="hide">Designed an <b>embedded file system</b> with a goal of optimal throughput efficiency without risk of metadata corruption from power loss.</li>
+          <li>Reimplemented an internal <b>source code scraper</b> to support more flexible trace tag syntax and command-line API.</li>
         </ul>
         <div class="heading">
           <h3 class="title">Contract Work</h3>
@@ -109,29 +122,51 @@
       <h1>Open Source Projects</h1>
       <div class="set-in">
         <div class="heading">
-          <h3 class="title"><a href="http://ziglang.org/">Zig</a></h3>
-          <p class="date">November 2015 - current</p>
-          <div class="clear"></div>
-        </div>
-        <p>
-          Consultant and contributor to Andrew Kelley's programming language, Zig.
-          Designed and implemented grammar/parsing, expression semantics, C-to-Zig translation, and more.
-          <span class="no-print">[<a href="https://github.com/zig-lang/zig">src</a>]</span>
-        </p>
-
-        <div class="heading">
           <h3 class="title"><a href="https://www.npmjs.com/package/yazl">yazl</a> and <a href="https://www.npmjs.com/package/yauzl">yauzl</a></h3>
           <p class="date">August 2014 - current</p>
           <div class="clear"></div>
         </div>
         <p>
           Zip and unzip libraries for <a href=https://nodejs.org/">Node.js</a>.
-          As of January 2018, the npm registry reports 4.7M downloads per month for yauzl.
+          Yauzl is the most popular unzip implementation on npm with 15M weekly downloads (as of April 2024).
           <span class="no-print">[<a href="https://github.com/thejoshwolfe/yazl">src</a>, <a href="https://github.com/thejoshwolfe/yauzl">src</a>]</span>
         </p>
 
         <div class="heading">
-          <h3 class="title"><a href="http://groovebasin.com/">Groove Basin</a></h3>
+          <h3 class="title"><a href="https://ziglang.org/">Zig</a></h3>
+          <p class="date">November 2015 - current</p>
+          <div class="clear"></div>
+        </div>
+        <p>
+          Contributor to the Zig programming language compiler and standard library,
+          and a board member of the non-profit Zig Software Foundation.
+          Designed and implemented much of the original grammar/parsing, expression semantics, C-to-Zig transpiler, and more.
+          Made significant contributions to the JSON support in the standard library.
+          <span class="no-print">[<a href="https://github.com/zig-lang/zig">src</a>]</span>
+        </p>
+
+        <div class="heading">
+          <h3 class="title"><a href="https://wolfesoftware.com/loops/">Loops</a></h3>
+          <p class="date">August 2018 - current</p>
+          <div class="clear"></div>
+        </div>
+        <p>
+          Yet another rotate-tiles-to-connect-loops game. Mobile friendly!
+          <span class="no-print">[<a href="https://github.com/thejoshwolfe/loops">src</a>]</span>
+        </p>
+
+        <div class="heading">
+          <h3 class="title"><a href="https://github.com/thejoshwolfe/git-vendor">git-vendor</a></h3>
+          <p class="date">May 2022 - current</p>
+          <div class="clear"></div>
+        </div>
+        <p>
+          Alternative to git submodules that avoids all the headaches.
+          This is the most polished of my projects to enhance/replace git with a better version control system.
+        </p>
+
+        <div class="heading">
+          <h3 class="title">Groove Basin</h3>
           <p class="date">January 2012 - current</p>
           <div class="clear"></div>
         </div>
@@ -143,55 +178,66 @@
         </p>
 
         <div class="heading">
-          <h3 class="title"><a href="http://wolfesoftware.com/legend-of-swarkland/">Legend of Swarkland</a></h3>
-          <p class="date">January 2015 - current</p>
-          <div class="clear"></div>
-        </div>
-        <p>
-          Rogue-like hack-n-slash game inspired by Nethack written in C++ using SDL.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/legend-of-swarkland">src</a>]</span>
-        </p>
-
-        <div class="heading">
-          <h3 class="title"><a href="http://wolfesoftware.com/snakefall/">Snakefall</a></h3>
+          <h3 class="title"><a href="https://wolfesoftware.com/snakefall/">Snakefall</a></h3>
           <p class="date">July 2015 - current</p>
           <div class="clear"></div>
         </div>
         <p>
-          A clone of <a href="http://snakebird.noumenongames.com/">Snakebird</a> by Noumenon Games for the browser
+          A clone of <a href="https://noumenongames.com/game/snakebird">Snakebird</a> by Noumenon Games for the browser
           featuring a level editor to encourage community-made levels.
           <span class="no-print">[<a href="https://github.com/thejoshwolfe/snakefall">src</a>]</span>
         </p>
 
-        <div class="heading hide">
-          <h3 class="title"><a href="http://wolfesoftware.com/maze-generator/">Maze Generator</a></h3>
-          <p class="date">November 2014 - current</p>
-          <div class="clear"></div>
-        </div>
-        <p class="hide">
-          An exploration of different maze generating algorithms on different topological spaces.
-          Has some statistical analysis built in.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/maze-generator">src</a>]</span>
-        </p>
-
         <div class="heading">
-          <h3 class="title">wolfebin</h3>
-          <p class="date">August 2011 - current</p>
+          <h3 class="title"><a href="https://wolfesoftware.com/legend-of-swarkland/">Legend of Swarkland</a></h3>
+          <p class="date">January 2015 - current</p>
           <div class="clear"></div>
         </div>
         <p>
-          Quick and easy file sharing client and server written in Python for the command line.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/wolfebin">src</a>]</span>
+          Rogue-like hack-n-slash game inspired by Nethack originally written in C++ using SDL, then rewritten in Zig.
+          <span class="no-print">[<a href="https://github.com/thejoshwolfe/legend-of-swarkland">src</a>]</span>
         </p>
 
         <div class="heading">
-          <h3 class="title"><a href="http://board-gamer-2d.wolfesoftware.com/">Board Gamer 2d</a></h3>
+          <h3 class="title">Board Gamer 2d</h3>
           <p class="date">August 2015 - current</p>
           <div class="clear"></div>
         </div>
         <p>
           Multiplayer board game and card game simulator for the browser.
           <span class="no-print">[<a href="https://github.com/thejoshwolfe/board-gamer-2d">src</a>]</span>
+        </p>
+
+        <div class="heading">
+          <h3 class="title"><a href="https://wolfesoftware.com/maze-generator/">Maze Generator</a></h3>
+          <p class="date">November 2014 - current</p>
+          <div class="clear"></div>
+        </div>
+        <p>
+          An exploration of different maze generating algorithms on different topological spaces.
+          Has some statistical analysis built in.
+          <span class="no-print">[<a href="https://github.com/thejoshwolfe/maze-generator">src</a>]</span>
+        </p>
+
+        <div class="heading">
+          <h3 class="title">whitespace_lint</h3>
+          <p class="date">May 2014 - current</p>
+          <div class="clear"></div>
+        </div>
+        <p>
+          Checks for and fixes whitespace mistakes like trailing spaces, mixed newline styles, and mixed indentation styles.
+          Written in Python.
+          <span class="no-print">[<a href="https://github.com/thejoshwolfe/whitespace_lint">src</a>]</span>
+        </p>
+
+        <div class="heading">
+          <h3 class="title">wolfebin</h3>
+          <p class="date">August 2011 - January 2021</p>
+          <div class="clear"></div>
+        </div>
+        <p>
+          Quick and easy file sharing client and server written in Python for the command line.
+          <span class="no-print">[<a href="https://github.com/thejoshwolfe/wolfebin">src</a>]</span>
         </p>
 
         <div class="heading">
@@ -227,19 +273,8 @@
         </p>
 
         <div class="heading">
-          <h3 class="title">whitespace_lint</h3>
-          <p class="date">May 2014 - current</p>
-          <div class="clear"></div>
-        </div>
-        <p>
-          Checks for and fixes whitespace mistakes like trailing spaces, mixed newline styles, and mixed indentation styles.
-          Written in Python.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/whitespace_lint">src</a>]</span>
-        </p>
-
-        <div class="heading">
           <h3 class="title">svn-color</h3>
-          <p class="date">August 2012 - current</p>
+          <p class="date">August 2012 - October 2014</p>
           <div class="clear"></div>
         </div>
         <p>
@@ -254,38 +289,6 @@
         </div>
         <p>
           REPL-enabled interpretor for performing mundane matrix operations to check my work in Linear Algebra class.
-        </p>
-
-        <div class="hide heading">
-          <h3 class="title">consoline</h3>
-          <p class="date">June 2011 - December 2012</p>
-          <div class="clear"></div>
-        </div>
-        <p class="hide">
-          GNU Readline wrapper written in C with better asynchronous input/output support.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/consoline">src</a>]</span>
-        </p>
-
-        <div class="heading hide">
-          <h3 class="title"><a href="http://wolfesoftware.com/vapor/">Vapor</a></h3>
-          <p class="date">March 2012 - current</p>
-          <div class="clear"></div>
-        </div>
-        <p class="hide">
-          Action platformer game work in progress.
-          Uses the Box2D physics engine for JavaScript.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/vapor">src</a>]</span>
-        </p>
-
-        <div class="heading hide">
-          <h3 class="title">Prismoid</h3>
-          <p class="date">June 2011 - current</p>
-          <div class="clear"></div>
-        </div>
-        <p class="hide">
-          2D physics engine for fixed-orientation convex polygons.
-          Designed for correctness rather than large-scale performance.
-          <span class="no-print">[<a href="https://github.com/thejoshwolfe/prismoid">src</a>]</span>
         </p>
       </div>
 
