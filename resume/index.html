@@ -51,18 +51,18 @@
           <li>Researched and documented several legacy systems that no one still working at the company knew how to maintain.</li>
           <li>Overhauled OkCupid's Boost feature so that it performed as expected.</li>
           <li>Co-architected a <b>re-design</b> of OkCupid's legacy backend to use <b>modern technologies</b>: Go, Kafka, gRPC, DynamoDB, and more.</li>
-          <li>Partially migrated OkCupid's 250+ backend microservices from an on-prem data center <b>to the cloud</b>, incrementally introducing Docker, Kubernetes, and other new technologies while maintaining <b>high availability</b>.</li>
+          <li>Partially migrated OkCupid's 250+ backend microservices from an on-prem data center <b>to the cloud</b>, incrementally introducing Docker, Kubernetes, ArgoCD, and Redis cache mirroring while maintaining <b>high availability</b>.</li>
           <li>Migrated OkCupid out of the cloud and back into an on-prem data center to <b>save cost</b>.</li>
           <li>Learned the hard way the value of incremental milestones in large projects when I attempted to overhaul OkCupid's geolocation database all at once. The project never shipped.</li>
           <li>Put my learnings into practice as <b>Technical Project Manager</b> for the Core Infrastructure team for over a year. Coordinated with the Ops team, and managed projects for myself and 1-3 other engineers.</li>
-          <li><b>Co-architected Archer's backend from scratch.</b></li>
-          <li>Conducted <b>technical interviews</b> for hiring 8 new employees.</li>
-          <li>Gave several <b>tech talks</b> and demos on subjects such as Kubernetes, high availability service discovery, and how to design more inclusive software by avoiding subtly racist pitfalls that most modern programming languges have built into their string type.</li>
+          <li><b>Co-architected Archer's backend.</b></li>
+          <li>Conducted extensive <b>technical interviews</b> leading to multiple hires.</li>
+          <li>Gave several <b>tech talks</b> and demos on subjects such as Kubernetes, high availability service discovery, and how to design more inclusive software by avoiding subtly racist pitfalls that most modern programming languages have built into their string type.</li>
           <li>Implemented and tuned a system for general-purpose <b>autoscaling in Kubernetes</b> for Archer's microservices.</li>
-          <li>Rebuilt and <b>optimized</b> Archer's MSK (Kafka) cluster and performed a zero-downtime migration to it to reduce costs by 5x.</li>
+          <li>Rebuilt and <b>optimized</b> Archer's AWS MSK (Kafka) cluster and performed a zero-downtime migration to it to reduce costs by 5x.</li>
           <li>Created several internal tools for searching and managing <b>source code</b> across dozens of git repos.</li>
-          <li>Found and fixed a year-old <b>race condition bug</b> with the microservice shutdown procedure that was causing requests to time out during rolling deployment.</li>
-          <li>Implemented an enhancement to command line developer tools to automatically download required dependencies, dramatically reducing the difficulty of workstation setup.</li>
+          <li>Found a long-standing <b>race condition</b> that fixed timeout errors during microservice deployments.</li>
+          <li>Implemented enhancements to command line developer tools to speed up workstation setup.</li>
         </ul>
 
         <div class="heading">
@@ -95,11 +95,11 @@
         </p>
         <ul>
           <li>Developed a <b>Makefile generator</b> to implement the IDE's build steps in a way that is consistent both inside and outside the GUI.</li>
-          <li>Designed and created a <b>Time Map</b> tool using a Gantt chart to visualize the scheduling and execution timeline of all threads and interrupts on the embedded system.</li>
+          <li>Created a <b>Time Map</b> tool to visualize with Gantt charts the scheduling and execution timeline of threads and interrupts on the embedded system.</li>
           <li>Implemented a single button that would save edits, recompile, upload the binary, restart the target, and attach the debugger.</li>
           <li>Extended the IDE's <b>debugger</b> to add support for lazy pointer expansion, variable byte sizes, and other features.</li>
           <li>Redesigned an embedded <b>test harness</b> to run 10x faster by eliminating extraneous network connections and using non-volatile storage to resume after target reboot. Written in C.</li>
-          <li>Created an embedded interpreter for a Lisp-like <b>shell language</b> for Deos. This unified various target-side utilities by providing an interactive interface from the PC to the Deos API's on the embedded target. Written in C.</li>
+          <li>Created an embedded interpreter in C for a Lisp-like <b>shell language</b> for Deos, providing an interactive interface from the workstation to the Deos API's on the embedded target.</li>
           <li>Enhanced Eclipse/OpenArbor with <b>editor support</b> for the new Deos shell language. Written in Java.</li>
           <li><b>Automated</b> several steps of the software development process with scripts that scrape Subversion and Bugzilla.</li>
           <li>Reimplemented an internal <b>source code scraper</b> to support more flexible trace tag syntax and command-line API.</li>
@@ -110,10 +110,8 @@
           <div class="clear"></div>
         </div>
         <p>
-          Wrote software to control a motor-mounted camera
-          designed for high-resolution photography of entomology specimens
-          used by Arizona State University.
-          Client/server architecture allowed remote control and live video streaming.
+          Created an interactive client/server system to control a motor-mounted camera
+          for high-resolution photography of entomology specimens for Arizona State University.
           Used Python3, C++, and Qt.
           <span class="no-print">[<a href="https://github.com/thejoshwolfe/repatriator">src</a>]</span>
         </p>
