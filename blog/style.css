@@ -1,0 +1,17 @@
+/* Support dark mode */
+body {
+  background-color: Canvas;
+  color: CanvasText;
+  color-scheme: light dark;
+}
+
+/* Mess with before and after spacing so that all the blank lines look right. */
+h1, h2, h3, h4 {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+p {
+  margin-block-start: 0em;
+}
+
+/* base.html style */
