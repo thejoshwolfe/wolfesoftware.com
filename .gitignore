@@ -2,4 +2,3 @@
 
 /blog/*.html
 !/blog/base.html
-/blog/rss.xml
