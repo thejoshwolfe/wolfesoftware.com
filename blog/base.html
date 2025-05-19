@@ -4,24 +4,24 @@
     <meta charset="utf-8">
     <title>{{TITLE}}</title>
     <link rel="alternate" type="application/rss+xml" title="Josh Wolfe" href="/rss.xml">
-    <link type=text/css rel=stylesheet href="style.css">
+    <link type=text/css rel=stylesheet href="/site/style.css">
   </head>
   <body>
     <div id="sidebar">
-      <h3><a href="/">Wolfe Software</a></h3>
-      <div class="fancy-divider-line"></div>
-      <p class="snippet">Website for my open-source web projects</p>
-      <div class="fancy-divider-line"></div>
-      <ul class="nav">
-        <li><a href="/">Home</a></li>
-        <li><a href="/resume">Resume</a></li>
-        <li><a href="http://github.com/thejoshwolfe">Github</a></li>
-      </ul>
+      <h3><a href="/">Josh Wolfe</a></h3>
+      <p class="snippet">Website for my open-source projects</p>
+      <div class="nav">
+        <div><a href="/resume">Resume</a></div><span class="no-landscape"> | </span>
+        <div><a href="/blog">Blog</a></div><span class="no-landscape"> | </span>
+        <div><a href="http://github.com/thejoshwolfe">Github</a></div>
+      </div>
     </div>
-    <header style="width: 100%;">
-      <a href="/">Josh Wolfe</a> - {{TITLE}} ({{DATE}}) - {{SRC}}
-    </header>
-    <hr>
+    <div class=content>
+      <header style="width: 100%;">
+        Josh Wolfe - {{TITLE}} ({{DATE}}) - {{SRC}}
+      </header>
+      <hr>
 {{BODY}}
+    </div>
   </body>
 </html>

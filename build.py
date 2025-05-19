@@ -38,6 +38,7 @@ publish_roots = [
     "index.html",
     "resume/",
     "blog/",
+    "site/",
 ]
 def do_publish(dry_run):
     s3cmd = [
@@ -207,14 +208,17 @@ def markdown_to_html(contents):
     out = io.StringIO()
 
     current_structural_tag_name = None
-    def set_current_structural_tag_name(tag_name):
+    def set_current_structural_tag_name(tag_name, attrs=None):
         nonlocal current_structural_tag_name
         if current_structural_tag_name == tag_name: return False
         if current_structural_tag_name != None:
             out.write("</{}>\n".format(current_structural_tag_name))
         current_structural_tag_name = tag_name
         if current_structural_tag_name != None:
-            out.write("<{}>".format(current_structural_tag_name))
+            out.write("<" + current_structural_tag_name)
+            if attrs != None:
+                out.write(" " + attrs)
+            out.write(">")
         return True
 
     def inline_style(text):
@@ -238,9 +242,9 @@ def markdown_to_html(contents):
         if structure.group("heading") != None:
             h_number = len(structure.group().split(" ", 1)[0])
             assert 1 <= h_number <= 4
-            set_current_structural_tag_name("h{}".format(h_number))
+            set_current_structural_tag_name("h{}".format(h_number), "class=markdown")
         elif structure.group("other") != None:
-            if not set_current_structural_tag_name("p"):
+            if not set_current_structural_tag_name("p", "class=markdown"):
                 out.write("<br>\n")
         else: assert False
 
