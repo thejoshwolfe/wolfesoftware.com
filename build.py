@@ -45,6 +45,9 @@ def do_publish(dry_run):
         "s3cmd", "sync",
         "--acl-public", "--no-preserve",
         "--add-header=Cache-Control: max-age=0, must-revalidate",
+        # mime magic is buggy for css files. guess mime type based on file extension only.
+        # See https://stackoverflow.com/questions/53708938/s3cmd-flagging-css-with-wrong-mime-type
+        "--no-mime-magic", "--guess-mime-type",
     ]
     if dry_run:
         s3cmd.append("--dry-run")
