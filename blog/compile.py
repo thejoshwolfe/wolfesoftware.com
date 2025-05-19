@@ -15,9 +15,26 @@ def main():
     parser = argparse.ArgumentParser()
     parser.parse_args()
 
+    index_elements = []
     rss_elements = []
     for file in files:
-        compile_file(file, rss_elements)
+        compile_file(file, index_elements, rss_elements)
+    # The date in YYYY-MM-DD format comes before the title, so this will sort chronologically:
+    index_elements.sort(reverse=True)
+
+    # Insert the list of posts into various html documents.
+    for index_path, indentation in [
+        ("index.html", 6),
+        ("../index.html", 8),
+    ]:
+        with open(index_path) as f:
+            index_contents = f.read()
+        match = re.search(r'\n{0}<ul id="post-list".*?>(.*?)\n{0}</ul>'.format(" " * indentation), index_contents, re.DOTALL)
+        start, end = match.span(1)
+        new_contents = index_contents[:start] + "\n" + "\n".join(index_elements) + index_contents[end:]
+        if new_contents != index_contents:
+            with open(index_path, "w") as f:
+                f.write(new_contents)
 
     # Build full rss.xml document.
     with open("rss-template.xml") as f:
@@ -39,14 +56,16 @@ def main():
             f.write(rss_content)
 
 
-def compile_file(markdown_path, rss_elements):
+def compile_file(markdown_path, index_elements, rss_elements):
     html_path = markdown_path.replace(".md", ".html")
+    assert html_path == escape_attribute(html_path)
     with open(markdown_path) as f:
         markdown_contents = f.read()
 
     # Parameters
     title = re.match(r'^# (.*)', markdown_contents).group(1)
-    version_control = generate_version_control_html(markdown_path)
+    assert title == escape_text(title)
+    date_html, src_html = generate_version_control_html(markdown_path)
     html_body = markdown_to_html(markdown_contents)
     # Date is in RFC-something format: Sat, 07 Sep 2002 00:00:01 GMT
     cmd = ["git", "rev-list", "-n1", "--no-commit-header", "--pretty=tformat:%aD", "HEAD", "--", markdown_path]
@@ -61,13 +80,16 @@ def compile_file(markdown_path, rss_elements):
     html = (html_base
         .replace("{{TITLE}}", title)
         .replace("{{BODY}}", html_body)
-        .replace("{{VERSION_CONTROL}}", version_control)
+        .replace("{{DATE}}", date_html)
+        .replace("{{SRC}}", src_html)
     )
     with open(html_path, "w") as f:
         f.write(html)
 
-    # output rss
+    # output index
+    index_elements.append('<li>{} - <a href=/blog/{}>{}</a></li>'.format(date_html, html_path, title))
 
+    # output rss
     rss_elements.append("""\
       <item>
          <title>{TITLE}</title>
@@ -105,7 +127,7 @@ def generate_version_control_html(path):
     source_url = "https://github.com/thejoshwolfe/wolfesoftware.com/blob/master/" + path_in_repo
     source_link = "<a href={}>src</a>".format(escape_attribute(source_url))
 
-    return "({}) - {}".format(timestamp_blurb, source_link)
+    return timestamp_blurb, source_link
 
 
 @lru_cache()
