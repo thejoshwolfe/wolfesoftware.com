@@ -51,8 +51,7 @@ def do_publish(dry_run):
 
     for root in publish_roots:
         cmd = s3cmd + [root, bucket + root]
-        import shlex
-        print(shlex.join(cmd))
+        subprocess.run(cmd, check=True)
 
 files_with_sidebar = [
     "index.html", # authoritative
