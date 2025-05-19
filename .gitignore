@@ -1,1 +1,5 @@
 /resume/Josh_Wolfe_resume.pdf
+
+/blog/*.html
+!/blog/base.html
+/blog/rss.xml

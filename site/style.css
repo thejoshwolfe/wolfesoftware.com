@@ -1,16 +1,16 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: 'Open Sans', sans-serif;
+
+  font-family: sans-serif;
+  line-height: 1.3;
 }
 
-html {
-  height: 100%;
-  width: 100%;
-}
-
-a {
-  text-decoration: none;
+/* Support dark mode */
+body {
+  background-color: Canvas;
+  color: CanvasText;
+  color-scheme: light dark;
 }
 
 button {
@@ -31,22 +31,9 @@ button i.fa {
   font-size: 1.2em;
 }
 
-#sidebar {
-  background: #1250BA;
-  box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  padding: 20px;
-  width: 200px;
+.nav {
+  text-align: center;
 }
-
-#sidebar .avatar {
-  border-radius: 10px;
-  height: 215px;
-}
-
 #sidebar h3 {
   color: #EEEEEE;
   font-size: 1.4em;
@@ -55,54 +42,14 @@ button i.fa {
   text-align: center;
 }
 
-#sidebar .fancy-divider-line {
-  background-color: rgba(0,0,0,0.3);
-  box-sizing: border-box;
-  height: 1px;
-  margin: 10px auto;
-  width: 84%;
-}
-
 #sidebar .snippet {
   font-size: 0.8em;
   text-align: center;
 }
 
-#sidebar .nav {
-  list-style: none;
-}
-
-#sidebar .nav li {
-  margin: 10px 0;
-  text-align: center;
-}
-
-#sidebar a {
-  color: #DFE4EC;
-  text-decoration: none;
-}
-
-#sidebar a:hover {
-  color: white;
-}
-
-.nav > li > ul li {
-  font-size: 0.8em;
-  list-style: none;
-  margin: 5px 0 !important;
-}
-
-.nav > li > ul li a {
-  color: #BDC9DC !important;
-}
-
 .content {
-  margin-left: 200px;
-  height: 100%;
-  position: relative;
-  width: auto;
+  max-width: 60rem;
 }
-
 .content a {
   color: #1250BA;
   font-weight: bold;
@@ -118,15 +65,12 @@ button i.fa {
 
 .item {
   clear: both;
+  margin-top: 2rem;
 }
 
-img.header.bg-cover {
-    margin: 10px 10px 0 10px;
-}
-
-.copy {
-  float: right;
-  width: calc(100% - 201px);
+img.thumbnail {
+  width: 200px;
+  margin: 0px 10px 10 10px;
 }
 
 .set-in {
@@ -166,35 +110,106 @@ img.header.bg-cover {
   padding: 5px 8px;
 }
 
-.content .cta-buttons a {
+.content .buttons a {
   margin-right: 15px;
 }
 
-.header {
-  background-color: #0D429C;
-  color: white;
-  display: inline-block;
-  float: left;
-  text-align: center;
-  width: 200px;
-}
-
-.header h2 {
-  background-color: rgba(0,0,0,0.6);
-  color: white;
-  font-family: 'Alegreya Sans', 'Open Sans', sans-serif;
-  font-size: 2em;
-  text-align: center;
-}
-
-.content .cta-buttons a:hover button {
+.content .buttons a:hover button {
   background-color: #FFEDB9 !important;
+}
+
+h1.markdown {
+  margin-block-start: 1em;
+  margin-block-end: 0em;
+  margin-left: 0px;
+}
+h2.markdown,
+h3.markdown,
+h4.markdown {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+p.markdown {
+  margin-block-start: 0em;
+  margin-block-end: 1em;
 }
 
 .hide {
   display: none;
 }
 
+/* landscape / desktop */
+@media(aspect-ratio >= 1) {
+  .no-landscape {
+    display: none;
+  }
+
+  #sidebar {
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 20px;
+    width: 200px;
+  }
+  #sidebar .nav div {
+    margin: 10px 0;
+    text-align: center;
+  }
+  .content {
+    margin-left: 200px;
+    height: 100%;
+    position: relative;
+    width: auto;
+  }
+
+  img.thumbnail {
+    float: right;
+  }
+}
+/* portrait / mobile */
+@media(aspect-ratio < 1) {
+  .no-portrait {
+    display: none;
+  }
+
+  #sidebar .nav div {
+    display: inline;
+  }
+  .nav {
+    margin: 10px;
+  }
+  .content {
+    margin: 10px;
+  }
+
+  img.thumbnail {
+    float: right;
+  }
+}
+
+/* dark mode */
+@media (prefers-color-scheme: dark) {
+  #sidebar a {
+    color: #DFE4EC;
+  }
+  #sidebar a:hover {
+    color: white;
+  }
+}
+
+/* light mode */
+@media (prefers-color-scheme: light) {
+  #sidebar a {
+    color: #111;
+  }
+  #sidebar a:hover {
+    color: gray;
+  }
+}
+
+/* Print-friendly style, primarily for resume/index.html */
 @media print {
   .no-print {
     display: none;
@@ -214,6 +229,10 @@ img.header.bg-cover {
   }
   .set-in {
     margin: 8px 0px 0px 30px;
+  }
+
+  a {
+    text-decoration: none;
   }
 
   a:link, a:visited {
