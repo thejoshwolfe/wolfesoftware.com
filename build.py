@@ -6,45 +6,112 @@ import datetime, email.utils
 
 from functools import lru_cache
 
-files = [
-    "hello-blog.md",
-]
-
 def main():
     import argparse
     parser = argparse.ArgumentParser()
-    parser.parse_args()
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--just-build", action="store_true", help=
+        "Don't touch s3cmd or the network. Just do the build locally.")
+    group.add_argument("--publish", action="store_true", help=
+        "Actually publish instead of just showing a diff. Removes the --dry-run argument from s3cmd sync.")
+    args = parser.parse_args()
 
+    assert os.path.samefile(".", get_repo_root()), "must be executed from the repo root"
+
+    build_sidebar()
+    build_blog()
+    check_resume()
+
+    if args.just_build: return
+    do_publish(dry_run=not args.publish)
+
+def check_resume():
+    source_mtime = os.stat("resume/index.html").st_mtime
+    try:
+        generated_mtime = os.stat("resume/Josh_Wolfe_resume.pdf").st_mtime
+    except FileNotFoundError:
+        generated_mtime = float("-inf")
+    if source_mtime > generated_mtime:
+        sys.exit("ERROR: it looks like resume/Josh_Wolfe_resume.pdf needs to be re-rendered (from a browser).")
+
+publish_roots = [
+    "index.html",
+    "resume/",
+    "blog/",
+]
+def do_publish(dry_run):
+    s3cmd = [
+        "s3cmd", "sync",
+        "--acl-public", "--no-preserve",
+        "--add-header=Cache-Control: max-age=0, must-revalidate",
+    ]
+    if dry_run:
+        s3cmd.append("--dry-run")
+    bucket = "s3://wolfesoftware.com/"
+
+    for root in publish_roots:
+        cmd = s3cmd + [root, bucket + root]
+        import shlex
+        print(shlex.join(cmd))
+
+files_with_sidebar = [
+    "index.html", # authoritative
+    "resume/index.html",
+    "blog/index.html",
+    "blog/base.html",
+]
+def build_sidebar():
+    the_sidebar_contents = None
+    for file in files_with_sidebar:
+        with open(file) as f:
+            contents = f.read()
+        match = re.search(r'\n( +)<div id="sidebar".*?>(.*?)\n\1</div>', contents, re.DOTALL)
+        if the_sidebar_contents == None:
+            # Authoritative
+            the_sidebar_contents = match.group(2)
+        else:
+            # Write to this file.
+            new_contents = contents[:match.span(2)[0]] + the_sidebar_contents + contents[match.span(2)[1]:]
+            if contents != new_contents:
+                with open(file, "w") as f:
+                    f.write(new_contents)
+
+
+blog_files = [
+    "blog/hello-blog.md",
+]
+files_with_blog_list = [
+    "blog/index.html",
+    "index.html",
+]
+def build_blog():
     index_elements = []
     rss_elements = []
-    for file in files:
+    for file in blog_files:
         compile_file(file, index_elements, rss_elements)
     # The date in YYYY-MM-DD format comes before the title, so this will sort chronologically:
     index_elements.sort(reverse=True)
 
     # Insert the list of posts into various html documents.
-    for index_path, indentation in [
-        ("index.html", 6),
-        ("../index.html", 8),
-    ]:
+    for index_path in files_with_blog_list:
         with open(index_path) as f:
             index_contents = f.read()
-        match = re.search(r'\n{0}<ul id="post-list".*?>(.*?)\n{0}</ul>'.format(" " * indentation), index_contents, re.DOTALL)
-        start, end = match.span(1)
+        match = re.search(r'\n( +)<ul id="post-list".*?>(.*?)\n\1</ul>', index_contents, re.DOTALL)
+        start, end = match.span(2)
         new_contents = index_contents[:start] + "\n" + "\n".join(index_elements) + index_contents[end:]
         if new_contents != index_contents:
             with open(index_path, "w") as f:
                 f.write(new_contents)
 
     # Build full rss.xml document.
-    with open("rss-template.xml") as f:
+    with open("blog/rss-template.xml") as f:
         base_rss = f.read()
     rss_content = (base_rss
         .replace("{{LAST_BUILD_DATE}}", email.utils.format_datetime(datetime.datetime.now(datetime.UTC), usegmt=True))
         .replace("{{ITEMS}}", "".join(rss_elements))
     )
     # Only update if something changed, other than that timestamp we just threw in there.
-    with open("rss.xml") as f:
+    with open("blog/rss.xml") as f:
         previous_rss_content = f.read()
     def strip_last_build_date(rss_content):
         start = rss_content.index("<lastBuildDate>")
@@ -52,13 +119,13 @@ def main():
         stripped = rss_content[:start] + rss_content[end:]
         return stripped
     if strip_last_build_date(previous_rss_content) != strip_last_build_date(rss_content):
-        with open("rss.xml", "w") as f:
+        with open("blog/rss.xml", "w") as f:
             f.write(rss_content)
 
 
 def compile_file(markdown_path, index_elements, rss_elements):
     html_path = markdown_path.replace(".md", ".html")
-    assert html_path == escape_attribute(html_path)
+    assert html_path == escape_attribute(html_path), "need to add escaping for urls and stuff"
     with open(markdown_path) as f:
         markdown_contents = f.read()
 
@@ -75,7 +142,7 @@ def compile_file(markdown_path, index_elements, rss_elements):
         pub_date = email.utils.format_datetime(datetime.datetime.now(datetime.UTC), usegmt=True)
 
     # output html
-    with open("base.html") as f:
+    with open("blog/base.html") as f:
         html_base = f.read()
     html = (html_base
         .replace("{{TITLE}}", title)
@@ -87,7 +154,7 @@ def compile_file(markdown_path, index_elements, rss_elements):
         f.write(html)
 
     # output index
-    index_elements.append('<li>{} - <a href=/blog/{}>{}</a></li>'.format(date_html, html_path, title))
+    index_elements.append('<li>{} - <a href=/{}>{}</a></li>'.format(date_html, html_path, title))
 
     # output rss
     rss_elements.append("""\
@@ -95,8 +162,8 @@ def compile_file(markdown_path, index_elements, rss_elements):
          <title>{TITLE}</title>
          <pubDate>{PUB_DATE}</pubDate>
 
-         <link>https://wolfesoftware.com/blog/{HTML_PATH}</link>
-         <guid>https://wolfesoftware.com/blog/{HTML_PATH}</guid>
+         <link>https://wolfesoftware.com/{HTML_PATH}</link>
+         <guid>https://wolfesoftware.com/{HTML_PATH}</guid>
          <description><![CDATA[{BODY}]]></description>
       </item>
 """.format(
@@ -108,7 +175,6 @@ def compile_file(markdown_path, index_elements, rss_elements):
 
 def generate_version_control_html(path):
     # Dates are in YYYY-MM-DD format
-    path_in_repo = os.path.relpath(path, get_repo_root())
     cmd = ["git", "rev-list", "--no-commit-header", "--pretty=tformat:%as", "HEAD", "--", path]
     dates = subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL).stdout.decode("utf8").split()
     if len(dates) == 0:
@@ -118,32 +184,26 @@ def generate_version_control_html(path):
 
     timestamp_blurb = escape_text(dates[0])
     if len(dates) > 1:
-        history_url = "https://github.com/thejoshwolfe/wolfesoftware.com/commits/master/" + path_in_repo
+        history_url = "https://github.com/thejoshwolfe/wolfesoftware.com/commits/master/" + path
         timestamp_blurb += ", updated <a href={}>{}</a>".format(
             escape_attribute(history_url),
             escape_text(dates[-1]),
         )
 
-    source_url = "https://github.com/thejoshwolfe/wolfesoftware.com/blob/master/" + path_in_repo
+    source_url = "https://github.com/thejoshwolfe/wolfesoftware.com/blob/master/" + path
     source_link = "<a href={}>src</a>".format(escape_attribute(source_url))
 
     return timestamp_blurb, source_link
 
-
-@lru_cache()
-def get_repo_root():
-    return subprocess.run(["git", "rev-parse", "--show-toplevel"], check=True, stdout=subprocess.PIPE).stdout.decode("utf8").rstrip()
 
 structural_re = re.compile(
     r'(?P<heading>^#+ .*?$)|'
     r'(?P<other>^.*?$)'
     , re.MULTILINE
 )
-
 inline_re = re.compile(
     r'(?P<url>https://\S+)'
 )
-
 def markdown_to_html(contents):
     out = io.StringIO()
 
@@ -214,6 +274,11 @@ def escape_text(text):
 
 def escape_cdata(text):
     return text.replace("]]>", "]]]]><![CDATA[>")
+
+
+@lru_cache()
+def get_repo_root():
+    return subprocess.run(["git", "rev-parse", "--show-toplevel"], check=True, stdout=subprocess.PIPE).stdout.decode("utf8").rstrip()
 
 if __name__ == "__main__":
     main()
