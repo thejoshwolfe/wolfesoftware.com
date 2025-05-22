@@ -133,6 +133,10 @@ p.markdown {
   margin-block-start: 0em;
   margin-block-end: 1em;
 }
+span.markdown-annotation {
+  font-size: 1em;
+  color: #888;
+}
 
 .hide {
   display: none;

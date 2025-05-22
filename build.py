@@ -243,15 +243,18 @@ def markdown_to_html(contents):
 
     for structure in structural_re.finditer(contents):
         if structure.group("heading") != None:
-            h_number = len(structure.group().split(" ", 1)[0])
+            hashes, text = structure.group().split(" ", 1)
+            h_number = len(hashes)
             assert 1 <= h_number <= 4
             set_current_structural_tag_name("h{}".format(h_number), "class=markdown")
+            out.write("<span class=markdown-annotation>{}</span> ".format(hashes))
         elif structure.group("other") != None:
             if not set_current_structural_tag_name("p", "class=markdown"):
                 out.write("<br>\n")
+            text = structure.group()
         else: assert False
 
-        inline_style(structure.group())
+        inline_style(text)
     set_current_structural_tag_name(None)
 
     return out.getvalue()
