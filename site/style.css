@@ -88,7 +88,7 @@ img.thumbnail {
 
 .heading .date {
   float: right;
-  color: rgba(0,0,0,0.7);
+  color: darkgray;
   font-size: 0.8em;
   position: relative;
   top: 6px;
@@ -200,6 +200,9 @@ span.markdown-annotation {
   }
   #sidebar a:hover {
     color: white;
+  }
+  .heading .date {
+    color: lightgray;
   }
 }
 
