@@ -1,31 +1,302 @@
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR4nGNkAAIAAAoAAmxBs0IAAAAASUVORK5CYII="/>
     <title>wolfesoftware.com</title>
-    <link href="/site/style.css" rel="stylesheet">
+    <link href="/blog/rss.xml" rel="alternate" type="application/rss+xml" title="Josh Wolfe">
+    <!--BEGIN_AUTHORITATIVE "style" {{-->
+      <style>
+* {
+  margin: 0;
+  padding: 0;
+
+  font-family: sans-serif;
+  line-height: 1.3;
+}
+
+/* Support dark mode */
+body {
+  background-color: Canvas;
+  color: CanvasText;
+  color-scheme: light dark;
+}
+
+button {
+  cursor: pointer;
+}
+
+#sidebar nav {
+  text-align: center;
+}
+
+#sidebar h3 {
+  color: #EEEEEE;
+  font-size: 1.4em;
+  font-weight: normal;
+  margin: 10px 0;
+  text-align: center;
+}
+#sidebar .snippet {
+  font-size: 0.8em;
+  text-align: center;
+}
+
+#sidebar a {
+  color: light-dark(#111, #DFE4EC);
+}
+#sidebar a:hover {
+  color: light-dark(gray, white);
+}
+
+#toc {
+  background: #111;
+  width: 350px;
+}
+@media (width >= 1510px) {
+  #toc {
+    position: fixed;
+    right: 0%;
+    top: 40px;
+    z-index: 9001;
+  }
+  #toc .label {
+    display: none;
+  }
+}
+@media (width < 1510px) {
+  #toc {
+    margin: 10px;
+    width: fit-content;
+  }
+}
+#toc li {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: min-content auto;
+}
+
+#content {
+  max-width: 960px;
+}
+
+#content p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+#content h1 {
+  margin-block-start: 1em;
+  margin-block-end: 0em;
+  margin-left: 0px;
+}
+#content h2,
+#content h3,
+#content h4 {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+#content pre, code {
+  background: light-dark(#eee, #222);
+  border-radius: 5px;
+  font-family: monospace;
+  /* not sure why monospace looks smaller. */
+  font-size: 1.1em;
+}
+#content pre {
+  margin-left: 1em;
+  padding-left: 1em;
+}
+#content li.custom {
+  list-style-type: none;
+  margin-left: 1em;
+  padding-left: 2ex;
+  text-indent: -2ex;
+}
+#content strong {
+}
+#content a.internal {
+  color: inherit;
+  font-family: inherit;
+  text-decoration-color: #888;
+}
+#content a.external {
+  color: light-dark(#1250BA, #3E85FF);
+  text-decoration-color: currentColor;
+}
+#content a.self-link {
+  text-decoration: none;
+  color: #888;
+}
+#content a.self-link:hover {
+  text-decoration: underline;
+}
+
+span.symbol {
+  font-size: 1em;
+  color: #888;
+}
+
+.rowlike {
+  clear: both;
+  margin-top: 2rem;
+}
+
+img.thumbnail {
+  width: 200px;
+  margin: 0px 10px 10 10px;
+  float: right;
+}
+
+.set-in {
+  margin: 10px 30px;
+}
+
+.heading {
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  margin-top: 8px;
+}
+.heading .title {
+  float: left;
+}
+.heading .right {
+  float: right;
+  font-size: 0.8em;
+  position: relative;
+}
+.heading .clear {
+  clear: both;
+}
+
+#content ul {
+  margin: 10px 20px;
+}
+#content ul.custom, #content ol.custom {
+  margin: 0px;
+}
+#toc ul {
+  margin: 0px;
+}
+
+.button-row button {
+  background-color: #ECC968;
+  border: 0;
+  border-radius: 5px;
+  color: #333333;
+  padding: 5px 8px;
+}
+.button-row a {
+  margin-right: 15px;
+}
+.button-row a:hover button {
+  background-color: #FFEDB9 !important;
+}
+
+.hide {
+  display: none;
+}
+
+/* desktop / landscape */
+@media(aspect-ratio >= 1) {
+  .no-landscape {
+    display: none;
+  }
+
+  #sidebar {
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 20px;
+    width: 200px;
+  }
+  #sidebar nav div {
+    margin: 10px 0;
+    text-align: center;
+  }
+  #content {
+    margin-left: 200px;
+    height: 100%;
+    position: relative;
+    width: auto;
+  }
+}
+/* portrait / mobile */
+@media(aspect-ratio < 1) {
+  .no-portrait {
+    display: none;
+  }
+
+  #sidebar nav div {
+    display: inline;
+  }
+  #sidebar nav {
+    margin: 10px;
+  }
+  #content {
+    margin: 10px;
+  }
+}
+
+/* Printer-friendly */
+@media print {
+  .no-print {
+    display: none;
+  }
+  #content {
+    margin-left: 0px;
+  }
+  #content h1 {
+    font-size: 14pt;
+  }
+  #content h1, #content .sub-h1 {
+    text-align: center;
+    margin: 8px 0px 0px 0px;
+  }
+  #content h2, #content h3 {
+    font-size: 12pt;
+  }
+  .set-in {
+    margin: 8px 0px 0px 30px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:link, a:visited {
+    color: inherit !important;
+  }
+}
+      </style>
+    <!--}} END_AUTHORITATIVE-->
   </head>
   <body>
-    <div id="sidebar">
-      <h3><a href="/">Josh Wolfe</a></h3>
-      <p class="snippet">Website for my open-source projects</p>
-      <div class="nav">
-        <div><a href="/resume">Resume</a></div><span class="no-landscape"> | </span>
-        <div><a href="/blog">Blog</a></div><span class="no-landscape"> | </span>
-        <div><a href="http://github.com/thejoshwolfe">Github</a></div>
+    <!--BEGIN_AUTHORITATIVE "sidebar" {{-->
+      <div id="sidebar" class="no-print">
+        <h3><a href="/">Josh Wolfe</a></h3>
+        <p class="snippet">Website for my open-source projects</p>
+        <nav>
+          <div><a href="/resume">Resume</a></div><span class="no-landscape"> | </span>
+          <div><a href="/blog">Blog</a></div><span class="no-landscape"> | </span>
+          <div><a href="http://github.com/thejoshwolfe">Github</a></div>
+        </nav>
       </div>
-    </div>
-    <div class="content">
-      <div class="item">
+    <!--}} END_AUTHORITATIVE-->
+    <div id="content">
+      <div class=rowlike>
         <h2>Blog</h2>
-        <ul id="post-list">
+        <ul>
+          <!--BEGIN_GENERATED "post-list" {{-->
 <li>2025-05-19 - <a href=/blog/hello-blog.html>Hello Blog</a></li>
+<!--}} END_GENERATED-->
         </ul>
-        <div class="buttons">
+        <div class=button-row>
           <a href="/blog/"><button>🌐 read</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/loops_thumbnail.png">
         <h2>Loops</h2>
         <p>
@@ -33,12 +304,12 @@
           Features square and hexagonal tilings, toroidal topology, and more.
           Mobile friendly.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/loops/"><button>🎮 play</button></a><a href="https://github.com/thejoshwolfe/loops"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" style="background: none" src="site/maintaining_your_love_for_passion_projects.png">
         <h2>Maintaining Your Love For Passion Projects</h2>
         <p>
@@ -46,12 +317,12 @@
         </p><p>
           Watch out for drains on your enthusiasm and learn to set boundaries to protect yourself and ultimately benefit the world with better software. This is my story writing what would become the most popular unzip implementation in JavaScript, losing interest in the project, and then regaining interest after a 4 year hiatus. What went wrong and what was necessary to get back into it?
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="https://www.youtube.com/watch?v=V-VO0Ua_b4g"><button>▶️ YouTube</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/snakefall_thumbnail.png">
         <h2>Snakefall</h2>
         <p>
@@ -59,35 +330,35 @@
           It includes a level editor for making user made levels.
           Check out the <a href="https://github.com/thejoshwolfe/snakefall/wiki">github wiki</a> for a list of levels made by the community.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/snakefall/"><button>🎮 play</button></a><a href="https://github.com/thejoshwolfe/snakefall/wiki"><button>🌐 wiki</button></a><a href="https://github.com/thejoshwolfe/snakefall"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/swarkland_thumbnail.png">
         <h2>Legend of Swarkland</h2>
         <p>
           A hack-n-slash roguelike dungeon crawler inspired by <a href="http://www.nethack.org/">Nethack</a>.
           Pick up and use potions and wands, level up, reach the boss, and outsmart him.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/legend-of-swarkland/"><button>🌐 website</button></a><a href="https://github.com/thejoshwolfe/legend-of-swarkland"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/stop-thief.png">
         <h2>Electronic Crime Scanner for Stop Thief</h2>
         <p>
           Web app (mobile friendly) replicating the electronic device in the 1979 board game Stop Thief: Electronic Cops and Robbers.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/stop-thief/"><button>🖐🏿 use</button></a><a href="https://github.com/thejoshwolfe/stop-thief"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/board-gamer-2d_thumbnail.png">
         <h2>Board Gamer 2d</h2>
         <p>
@@ -95,12 +366,12 @@
           Drag cards, dice, and game pieces around a 2d table to play games with friends.
           Intended for use as a board game prototyping tool.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://board-gamer-2d.wolfesoftware.com/"><button>🎮 play</button></a><a href="https://github.com/thejoshwolfe/board-gamer-2d"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/vapor_thumbnail.png">
         <h2>Vapor</h2>
         <p>
@@ -108,36 +379,36 @@
           I have big dreams for this game, but little to show for it, hence the name: short for vaporware.
           So far it's just an experiment to create satisfying platformer physics.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/vapor/"><button>🎮 play</button></a><a href="https://github.com/thejoshwolfe/vapor"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/maze_generator_thumbnail.png">
         <h2>Maze Generator</h2>
         <p>
           Explore different maze generation algorithms and different topologies.
           The project has interactive step-by-step rendering that illustrates how different algorithms work.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/maze-generator/"><button>🖐🏿 use</button></a><a href="https://github.com/thejoshwolfe/maze-generator"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/just-n-time_thumbnail.png">
         <h2>just-n-time</h2>
         <p>
           A physics sandbox inspired by <a href="https://en.wikipedia.org/wiki/Braid_(video_game)">Braid</a>.
           Control the forward/backward flow of time for four different sets of objects independently.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/just-n-time/"><button>🖐🏿 use</button></a><a href="https://github.com/thejoshwolfe/just-n-time"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/betrayal_thumbnail.png">
         <h2>Character Card Tracker for Betrayal at House on the Hill</h2>
         <p>
@@ -149,12 +420,12 @@
           which also simulates shuffling and drawing from the decks of cards (not rooms or player pieces).
           Can run some of the basic events, like Night View and Creepy Doll, with a single button.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/betrayal/"><button>🖐🏿 use</button></a><a href="https://github.com/thejoshwolfe/"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/cards.png">
         <h2>Faction Shuffler for Smash Up</h2>
         <p>
@@ -163,12 +434,12 @@
           Option to importing custom factions.
           Mobile friendly.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/factions/"><button>🖐🏿 use</button></a><a href="https://github.com/thejoshwolfe/factions"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/cards.png">
         <h2>Card Shuffler for Star Wars Mafia</h2>
         <p>
@@ -176,36 +447,36 @@
           <a href="https://en.wikipedia.org/wiki/Mafia_(party_game)">Mafia/Werewolf</a>.
           This program allows you to select which characters should be in the game, and then tells you the order.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/mafia-shuffle/"><button>🖐🏿 use</button></a><a href="https://github.com/thejoshwolfe/mafia-shuffle"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/dice_thumbnail.png">
         <h2>Dice Roller</h2>
         <p>
           D6 dice roller specialized for <a href="http://www.sjgames.com/gurps/">GURPS</a>.
           Supports huge numbers of dice, shows history, and has hotkeys for everything.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/dice-roller/"><button>🖐🏿 use</button></a><a href="https://github.com/thejoshwolfe/dice-roller"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/stopwatch_thumbnail.png">
         <h2>Stopwatch</h2>
         <p>
           It's just a stopwatch, and not a very good one.
           I used it to time myself while <a href="https://www.youtube.com/watch?v=l0a2_j5wyL8">speedrunning Riven</a>.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/segmantis/"><button>🖐🏿 use</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/game_study.png">
         <h2>Game Design Study</h2>
         <p>

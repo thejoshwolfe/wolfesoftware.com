@@ -2,3 +2,6 @@
 
 /blog/*.html
 !/blog/base.html
+!/blog/index.html
+
+__pycache__/
