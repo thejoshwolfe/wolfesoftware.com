@@ -4,24 +4,292 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR4nGNkAAIAAAoAAmxBs0IAAAAASUVORK5CYII="/>
     <title>wolfesoftware.com</title>
-    <link href="/site/style.css" rel="stylesheet">
     <link href="/blog/rss.xml" rel="alternate" type="application/rss+xml" title="Josh Wolfe">
+    <!--BEGIN_AUTHORITATIVE "style" {{-->
+      <style>
+* {
+  margin: 0;
+  padding: 0;
+
+  font-family: sans-serif;
+  line-height: 1.3;
+}
+
+/* Support dark mode */
+body {
+  background-color: Canvas;
+  color: CanvasText;
+  color-scheme: light dark;
+}
+
+button {
+  cursor: pointer;
+}
+
+#sidebar nav {
+  text-align: center;
+}
+
+#sidebar h3 {
+  color: #EEEEEE;
+  font-size: 1.4em;
+  font-weight: normal;
+  margin: 10px 0;
+  text-align: center;
+}
+#sidebar .snippet {
+  font-size: 0.8em;
+  text-align: center;
+}
+
+#sidebar a {
+  color: light-dark(#111, #DFE4EC);
+}
+#sidebar a:hover {
+  color: light-dark(gray, white);
+}
+
+#toc {
+  background: #111;
+  width: 350px;
+}
+@media (width >= 1510px) {
+  #toc {
+    position: fixed;
+    right: 0%;
+    top: 40px;
+    z-index: 9001;
+  }
+  #toc .label {
+    display: none;
+  }
+}
+@media (width < 1510px) {
+  #toc {
+    margin: 10px;
+    width: fit-content;
+  }
+}
+#toc li {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: min-content auto;
+}
+
+#content {
+  max-width: 960px;
+}
+
+#content p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+#content h1 {
+  margin-block-start: 1em;
+  margin-block-end: 0em;
+  margin-left: 0px;
+}
+#content h2,
+#content h3,
+#content h4 {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+#content pre, code {
+  background: light-dark(#eee, #222);
+  border-radius: 5px;
+  font-family: monospace;
+  /* not sure why monospace looks smaller. */
+  font-size: 1.1em;
+}
+#content pre {
+  margin-left: 1em;
+  padding-left: 1em;
+}
+#content li.custom {
+  list-style-type: none;
+  margin-left: 1em;
+  padding-left: 2ex;
+  text-indent: -2ex;
+}
+#content strong {
+}
+#content a.internal {
+  color: inherit;
+  font-family: inherit;
+  text-decoration-color: #888;
+}
+#content a.external {
+  color: light-dark(#1250BA, #3E85FF);
+  text-decoration-color: currentColor;
+}
+#content a.self-link {
+  text-decoration: none;
+  color: #888;
+}
+#content a.self-link:hover {
+  text-decoration: underline;
+}
+
+span.symbol {
+  font-size: 1em;
+  color: #888;
+}
+
+.rowlike {
+  clear: both;
+  margin-top: 2rem;
+}
+
+img.thumbnail {
+  width: 200px;
+  margin: 0px 10px 10 10px;
+  float: right;
+}
+
+.set-in {
+  margin: 10px 30px;
+}
+
+.heading {
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  margin-top: 8px;
+}
+.heading .title {
+  float: left;
+}
+.heading .right {
+  float: right;
+  font-size: 0.8em;
+  position: relative;
+}
+.heading .clear {
+  clear: both;
+}
+
+#content ul {
+  margin: 10px 20px;
+}
+#content ul.custom, #content ol.custom {
+  margin: 0px;
+}
+#toc ul {
+  margin: 0px;
+}
+
+.button-row button {
+  background-color: #ECC968;
+  border: 0;
+  border-radius: 5px;
+  color: #333333;
+  padding: 5px 8px;
+}
+.button-row a {
+  margin-right: 15px;
+}
+.button-row a:hover button {
+  background-color: #FFEDB9 !important;
+}
+
+.hide {
+  display: none;
+}
+
+/* desktop / landscape */
+@media(aspect-ratio >= 1) {
+  .no-landscape {
+    display: none;
+  }
+
+  #sidebar {
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 20px;
+    width: 200px;
+  }
+  #sidebar nav div {
+    margin: 10px 0;
+    text-align: center;
+  }
+  #content {
+    margin-left: 200px;
+    height: 100%;
+    position: relative;
+    width: auto;
+  }
+}
+/* portrait / mobile */
+@media(aspect-ratio < 1) {
+  .no-portrait {
+    display: none;
+  }
+
+  #sidebar nav div {
+    display: inline;
+  }
+  #sidebar nav {
+    margin: 10px;
+  }
+  #content {
+    margin: 10px;
+  }
+}
+
+/* Printer-friendly */
+@media print {
+  .no-print {
+    display: none;
+  }
+  #content {
+    margin-left: 0px;
+  }
+  #content h1 {
+    font-size: 14pt;
+  }
+  #content h1, #content .sub-h1 {
+    text-align: center;
+    margin: 8px 0px 0px 0px;
+  }
+  #content h2, #content h3 {
+    font-size: 12pt;
+  }
+  .set-in {
+    margin: 8px 0px 0px 30px;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:link, a:visited {
+    color: inherit !important;
+  }
+}
+      </style>
+    <!--}} END_AUTHORITATIVE-->
   </head>
   <body>
-    <div id="sidebar" class="no-print">
-      <h3><a href="/">Josh Wolfe</a></h3>
-      <p class="snippet">Website for my open-source projects</p>
-      <nav>
-        <div><a href="/resume">Resume</a></div><span class="no-landscape"> | </span>
-        <div><a href="/blog">Blog</a></div><span class="no-landscape"> | </span>
-        <div><a href="http://github.com/thejoshwolfe">Github</a></div>
-      </nav>
-    </div>
+    <!--BEGIN_AUTHORITATIVE "sidebar" {{-->
+      <div id="sidebar" class="no-print">
+        <h3><a href="/">Josh Wolfe</a></h3>
+        <p class="snippet">Website for my open-source projects</p>
+        <nav>
+          <div><a href="/resume">Resume</a></div><span class="no-landscape"> | </span>
+          <div><a href="/blog">Blog</a></div><span class="no-landscape"> | </span>
+          <div><a href="http://github.com/thejoshwolfe">Github</a></div>
+        </nav>
+      </div>
+    <!--}} END_AUTHORITATIVE-->
     <div id="content">
       <div class=rowlike>
         <h2>Blog</h2>
-        <ul id="post-list">
+        <ul>
+          <!--BEGIN_GENERATED "post-list" {{-->
 <li>2025-05-19 - <a href=/blog/hello-blog.html>Hello Blog</a></li>
+<!--}} END_GENERATED-->
         </ul>
         <div class=button-row>
           <a href="/blog/"><button>🌐 read</button></a>

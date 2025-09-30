@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import os, sys, subprocess
-import re, io
+import re
 import datetime, email.utils
 
 from functools import lru_cache
@@ -18,8 +18,7 @@ def main():
 
     assert os.path.samefile(".", get_repo_root()), "must be executed from the repo root"
 
-    build_sidebar()
-    build_blog()
+    build_html()
     check_resume()
 
     if args.just_build: return
@@ -57,34 +56,39 @@ def do_publish(dry_run):
         cmd = s3cmd + [root, bucket + root]
         subprocess.run(cmd, check=True)
 
-files_with_sidebar = [
-    "index.html", # authoritative
-    "resume/index.html",
-    "blog/index.html",
-    "blog/base.html",
-]
-def build_sidebar():
-    the_sidebar_contents = None
-    for file in files_with_sidebar:
-        with open(file) as f:
-            contents = f.read()
-        match = re.search(r'\n( +)<div id="sidebar".*?>(.*?)\n\1</div>', contents, re.DOTALL)
-        if the_sidebar_contents == None:
-            # Authoritative
-            the_sidebar_contents = match.group(2)
-        else:
-            # Write to this file.
-            new_contents = contents[:match.span(2)[0]] + the_sidebar_contents + contents[match.span(2)[1]:]
-            if contents != new_contents:
-                with open(file, "w") as f:
-                    f.write(new_contents)
+def build_html():
+    definitions = load_authoritative_definitions("index.html")
+    propagate_definitions(definitions, "blog/base.html")
+    definitions["post-list"] = generate_post_list()
 
+    propagate_definitions(definitions, "blog/index.html")
+    propagate_definitions(definitions, "resume/index.html")
+    propagate_definitions(definitions, "index.html")
 
-files_with_blog_list = [
-    "blog/index.html",
-    "index.html",
-]
-def build_blog():
+def load_authoritative_definitions(path):
+    with open(path) as f:
+        contents = f.read()
+
+    definitions = {}
+    for name, body in re.findall(r'<!--BEGIN_AUTHORITATIVE "(.*?)" \{\{-->(.*?)<!--\}\} END_AUTHORITATIVE-->', contents, flags=re.DOTALL):
+        definitions[name] = body
+
+    return definitions
+
+def propagate_definitions(definitions, path):
+    with open(path) as f:
+        contents = f.read()
+    original_contents = contents
+
+    for match in reversed(list(re.finditer(r'<!--BEGIN_GENERATED "(.*?)" \{\{-->(.*?)<!--\}\} END_GENERATED-->', contents, flags=re.DOTALL))):
+        body = definitions[match.group(1)]
+        contents = contents[:match.span(2)[0]] + body + contents[match.span(2)[1]:]
+
+    if original_contents != contents:
+        with open(path, "w") as f:
+            f.write(contents)
+
+def generate_post_list():
     index_elements = []
     rss_elements = []
 
@@ -92,17 +96,7 @@ def build_blog():
 
     # The date in YYYY-MM-DD format comes before the title, so this will sort chronologically:
     index_elements.sort(reverse=True)
-
-    # Insert the list of posts into various html documents.
-    for index_path in files_with_blog_list:
-        with open(index_path) as f:
-            index_contents = f.read()
-        match = re.search(r'\n( +)<ul id="post-list".*?>(.*?)\n\1</ul>', index_contents, re.DOTALL)
-        start, end = match.span(2)
-        new_contents = index_contents[:start] + "\n" + "\n".join(index_elements) + index_contents[end:]
-        if new_contents != index_contents:
-            with open(index_path, "w") as f:
-                f.write(new_contents)
+    post_list_html = "\n" + "\n".join(index_elements) + "\n"
 
     # Build full rss.xml document.
     with open("blog/rss-template.xml") as f:
@@ -123,6 +117,8 @@ def build_blog():
         with open("blog/rss.xml", "w") as f:
             f.write(rss_content)
 
+    return post_list_html
+
 
 def compile_blog_file(markdown_path, index_elements, rss_elements, *, do_internal_links=False, toc_levels=0):
     html_path = markdown_path.replace(".md", ".html")
@@ -134,7 +130,7 @@ def compile_blog_file(markdown_path, index_elements, rss_elements, *, do_interna
     title = re.match(r'^# (.*)', markdown_contents).group(1)
     assert title == escape_text(title)
     date_html, src_html = generate_version_control_html(markdown_path)
-    toc_html, body_html = markdown_to_html(markdown_contents, do_internal_links=do_internal_links, toc_levels=toc_levels)
+    body_html = markdown_to_html(markdown_contents, do_internal_links=do_internal_links, toc_levels=toc_levels)
     # Date is in RFC-something format: Sat, 07 Sep 2002 00:00:01 GMT
     cmd = ["git", "rev-list", "-n1", "--no-commit-header", "--pretty=tformat:%aD", "HEAD", "--", markdown_path]
     pub_date = subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL).stdout.decode("utf8").rstrip()
@@ -147,7 +143,6 @@ def compile_blog_file(markdown_path, index_elements, rss_elements, *, do_interna
         html_base = f.read()
     html = (html_base
         .replace("{{TITLE}}", title)
-        .replace("{{TOC}}", toc_html)
         .replace("{{BODY}}", body_html)
         .replace("{{DATE}}", date_html)
         .replace("{{SRC}}", src_html)
@@ -199,11 +194,11 @@ def generate_version_control_html(path):
 
 def markdown_to_html(*args, **kwargs):
     import importlib.util
-    spec = importlib.util.spec_from_file_location("markdown_asdf", os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "zip-file-format/tools/markdown-to-html.py"))
-    asdf = importlib.util.module_from_spec(spec)
-    sys.modules["markdown_asdf"] = asdf
-    spec.loader.exec_module(asdf)
-    return asdf.markdown_to_html(*args, **kwargs)
+    spec = importlib.util.spec_from_file_location("markdown_asdf", os.path.join(os.path.dirname(os.path.abspath(__file__)), "deps/markdown-looks-good/markdown_looks_good.py"))
+    markdown_looks_good = importlib.util.module_from_spec(spec)
+    sys.modules["markdown_looks_good"] = markdown_looks_good
+    spec.loader.exec_module(markdown_looks_good)
+    return markdown_looks_good.markdown_to_html(*args, **kwargs)
 
 attribute_substitutions = {
     # https://www.w3.org/TR/2012/WD-html-markup-20120329/syntax.html#syntax-attr-unquoted
