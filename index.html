@@ -1,31 +1,34 @@
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR4nGNkAAIAAAoAAmxBs0IAAAAASUVORK5CYII="/>
     <title>wolfesoftware.com</title>
     <link href="/site/style.css" rel="stylesheet">
+    <link href="/blog/rss.xml" rel="alternate" type="application/rss+xml" title="Josh Wolfe">
   </head>
   <body>
-    <div id="sidebar">
+    <div id="sidebar" class="no-print">
       <h3><a href="/">Josh Wolfe</a></h3>
       <p class="snippet">Website for my open-source projects</p>
-      <div class="nav">
+      <nav>
         <div><a href="/resume">Resume</a></div><span class="no-landscape"> | </span>
         <div><a href="/blog">Blog</a></div><span class="no-landscape"> | </span>
         <div><a href="http://github.com/thejoshwolfe">Github</a></div>
-      </div>
+      </nav>
     </div>
-    <div class="content">
-      <div class="item">
+    <div id="content">
+      <div class=rowlike>
         <h2>Blog</h2>
         <ul id="post-list">
 <li>2025-05-19 - <a href=/blog/hello-blog.html>Hello Blog</a></li>
         </ul>
-        <div class="buttons">
+        <div class=button-row>
           <a href="/blog/"><button>🌐 read</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/loops_thumbnail.png">
         <h2>Loops</h2>
         <p>
@@ -33,12 +36,12 @@
           Features square and hexagonal tilings, toroidal topology, and more.
           Mobile friendly.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/loops/"><button>🎮 play</button></a><a href="https://github.com/thejoshwolfe/loops"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" style="background: none" src="site/maintaining_your_love_for_passion_projects.png">
         <h2>Maintaining Your Love For Passion Projects</h2>
         <p>
@@ -46,12 +49,12 @@
         </p><p>
           Watch out for drains on your enthusiasm and learn to set boundaries to protect yourself and ultimately benefit the world with better software. This is my story writing what would become the most popular unzip implementation in JavaScript, losing interest in the project, and then regaining interest after a 4 year hiatus. What went wrong and what was necessary to get back into it?
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="https://www.youtube.com/watch?v=V-VO0Ua_b4g"><button>▶️ YouTube</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/snakefall_thumbnail.png">
         <h2>Snakefall</h2>
         <p>
@@ -59,35 +62,35 @@
           It includes a level editor for making user made levels.
           Check out the <a href="https://github.com/thejoshwolfe/snakefall/wiki">github wiki</a> for a list of levels made by the community.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/snakefall/"><button>🎮 play</button></a><a href="https://github.com/thejoshwolfe/snakefall/wiki"><button>🌐 wiki</button></a><a href="https://github.com/thejoshwolfe/snakefall"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/swarkland_thumbnail.png">
         <h2>Legend of Swarkland</h2>
         <p>
           A hack-n-slash roguelike dungeon crawler inspired by <a href="http://www.nethack.org/">Nethack</a>.
           Pick up and use potions and wands, level up, reach the boss, and outsmart him.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/legend-of-swarkland/"><button>🌐 website</button></a><a href="https://github.com/thejoshwolfe/legend-of-swarkland"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/stop-thief.png">
         <h2>Electronic Crime Scanner for Stop Thief</h2>
         <p>
           Web app (mobile friendly) replicating the electronic device in the 1979 board game Stop Thief: Electronic Cops and Robbers.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/stop-thief/"><button>🖐🏿 use</button></a><a href="https://github.com/thejoshwolfe/stop-thief"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/board-gamer-2d_thumbnail.png">
         <h2>Board Gamer 2d</h2>
         <p>
@@ -95,12 +98,12 @@
           Drag cards, dice, and game pieces around a 2d table to play games with friends.
           Intended for use as a board game prototyping tool.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://board-gamer-2d.wolfesoftware.com/"><button>🎮 play</button></a><a href="https://github.com/thejoshwolfe/board-gamer-2d"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/vapor_thumbnail.png">
         <h2>Vapor</h2>
         <p>
@@ -108,36 +111,36 @@
           I have big dreams for this game, but little to show for it, hence the name: short for vaporware.
           So far it's just an experiment to create satisfying platformer physics.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/vapor/"><button>🎮 play</button></a><a href="https://github.com/thejoshwolfe/vapor"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/maze_generator_thumbnail.png">
         <h2>Maze Generator</h2>
         <p>
           Explore different maze generation algorithms and different topologies.
           The project has interactive step-by-step rendering that illustrates how different algorithms work.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/maze-generator/"><button>🖐🏿 use</button></a><a href="https://github.com/thejoshwolfe/maze-generator"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/just-n-time_thumbnail.png">
         <h2>just-n-time</h2>
         <p>
           A physics sandbox inspired by <a href="https://en.wikipedia.org/wiki/Braid_(video_game)">Braid</a>.
           Control the forward/backward flow of time for four different sets of objects independently.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/just-n-time/"><button>🖐🏿 use</button></a><a href="https://github.com/thejoshwolfe/just-n-time"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/betrayal_thumbnail.png">
         <h2>Character Card Tracker for Betrayal at House on the Hill</h2>
         <p>
@@ -149,12 +152,12 @@
           which also simulates shuffling and drawing from the decks of cards (not rooms or player pieces).
           Can run some of the basic events, like Night View and Creepy Doll, with a single button.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/betrayal/"><button>🖐🏿 use</button></a><a href="https://github.com/thejoshwolfe/"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/cards.png">
         <h2>Faction Shuffler for Smash Up</h2>
         <p>
@@ -163,12 +166,12 @@
           Option to importing custom factions.
           Mobile friendly.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/factions/"><button>🖐🏿 use</button></a><a href="https://github.com/thejoshwolfe/factions"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/cards.png">
         <h2>Card Shuffler for Star Wars Mafia</h2>
         <p>
@@ -176,36 +179,36 @@
           <a href="https://en.wikipedia.org/wiki/Mafia_(party_game)">Mafia/Werewolf</a>.
           This program allows you to select which characters should be in the game, and then tells you the order.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/mafia-shuffle/"><button>🖐🏿 use</button></a><a href="https://github.com/thejoshwolfe/mafia-shuffle"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/dice_thumbnail.png">
         <h2>Dice Roller</h2>
         <p>
           D6 dice roller specialized for <a href="http://www.sjgames.com/gurps/">GURPS</a>.
           Supports huge numbers of dice, shows history, and has hotkeys for everything.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/dice-roller/"><button>🖐🏿 use</button></a><a href="https://github.com/thejoshwolfe/dice-roller"><button>📖 source</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/stopwatch_thumbnail.png">
         <h2>Stopwatch</h2>
         <p>
           It's just a stopwatch, and not a very good one.
           I used it to time myself while <a href="https://www.youtube.com/watch?v=l0a2_j5wyL8">speedrunning Riven</a>.
         </p>
-        <div class="buttons">
+        <div class=button-row>
           <a href="http://wolfesoftware.com/segmantis/"><button>🖐🏿 use</button></a>
         </div>
       </div>
 
-      <div class="item">
+      <div class=rowlike>
         <img class="thumbnail" src="site/game_study.png">
         <h2>Game Design Study</h2>
         <p>

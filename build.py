@@ -80,9 +80,6 @@ def build_sidebar():
                     f.write(new_contents)
 
 
-blog_files = [
-    "blog/hello-blog.md",
-]
 files_with_blog_list = [
     "blog/index.html",
     "index.html",
@@ -90,8 +87,9 @@ files_with_blog_list = [
 def build_blog():
     index_elements = []
     rss_elements = []
-    for file in blog_files:
-        compile_file(file, index_elements, rss_elements)
+
+    compile_blog_file("blog/hello-blog.md", index_elements, rss_elements)
+
     # The date in YYYY-MM-DD format comes before the title, so this will sort chronologically:
     index_elements.sort(reverse=True)
 
@@ -126,7 +124,7 @@ def build_blog():
             f.write(rss_content)
 
 
-def compile_file(markdown_path, index_elements, rss_elements):
+def compile_blog_file(markdown_path, index_elements, rss_elements, *, do_internal_links=False, toc_levels=0):
     html_path = markdown_path.replace(".md", ".html")
     assert html_path == escape_attribute(html_path), "need to add escaping for urls and stuff"
     with open(markdown_path) as f:
@@ -136,7 +134,7 @@ def compile_file(markdown_path, index_elements, rss_elements):
     title = re.match(r'^# (.*)', markdown_contents).group(1)
     assert title == escape_text(title)
     date_html, src_html = generate_version_control_html(markdown_path)
-    html_body = markdown_to_html(markdown_contents)
+    toc_html, body_html = markdown_to_html(markdown_contents, do_internal_links=do_internal_links, toc_levels=toc_levels)
     # Date is in RFC-something format: Sat, 07 Sep 2002 00:00:01 GMT
     cmd = ["git", "rev-list", "-n1", "--no-commit-header", "--pretty=tformat:%aD", "HEAD", "--", markdown_path]
     pub_date = subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL).stdout.decode("utf8").rstrip()
@@ -149,7 +147,8 @@ def compile_file(markdown_path, index_elements, rss_elements):
         html_base = f.read()
     html = (html_base
         .replace("{{TITLE}}", title)
-        .replace("{{BODY}}", html_body)
+        .replace("{{TOC}}", toc_html)
+        .replace("{{BODY}}", body_html)
         .replace("{{DATE}}", date_html)
         .replace("{{SRC}}", src_html)
     )
@@ -173,7 +172,7 @@ def compile_file(markdown_path, index_elements, rss_elements):
         TITLE=title,
         PUB_DATE=pub_date,
         HTML_PATH=html_path,
-        BODY=escape_cdata(html_body),
+        BODY=escape_cdata(body_html),
     ))
 
 def generate_version_control_html(path):
@@ -198,66 +197,13 @@ def generate_version_control_html(path):
 
     return timestamp_blurb, source_link
 
-
-structural_re = re.compile(
-    r'(?P<heading>^#+ .*?$)|'
-    r'(?P<other>^.*?$)'
-    , re.MULTILINE
-)
-inline_re = re.compile(
-    r'(?P<url>https://\S+)'
-)
-def markdown_to_html(contents):
-    out = io.StringIO()
-
-    current_structural_tag_name = None
-    def set_current_structural_tag_name(tag_name, attrs=None):
-        nonlocal current_structural_tag_name
-        if current_structural_tag_name == tag_name: return False
-        if current_structural_tag_name != None:
-            out.write("</{}>\n".format(current_structural_tag_name))
-        current_structural_tag_name = tag_name
-        if current_structural_tag_name != None:
-            out.write("<" + current_structural_tag_name)
-            if attrs != None:
-                out.write(" " + attrs)
-            out.write(">")
-        return True
-
-    def inline_style(text):
-        while True:
-            match = inline_re.search(text)
-            if match == None:
-                out.write(escape_text(text))
-                return
-            out.write(escape_text(text[:match.span()[0]]))
-
-            if match.group("url"):
-                out.write("<a href={}>{}</a>".format(
-                    escape_attribute(match.group()),
-                    escape_text(match.group()),
-                ))
-            else: assert False
-
-            text = text[match.span()[1]:]
-
-    for structure in structural_re.finditer(contents):
-        if structure.group("heading") != None:
-            hashes, text = structure.group().split(" ", 1)
-            h_number = len(hashes)
-            assert 1 <= h_number <= 4
-            set_current_structural_tag_name("h{}".format(h_number), "class=markdown")
-            out.write("<span class=markdown-annotation>{}</span> ".format(hashes))
-        elif structure.group("other") != None:
-            if not set_current_structural_tag_name("p", "class=markdown"):
-                out.write("<br>\n")
-            text = structure.group()
-        else: assert False
-
-        inline_style(text)
-    set_current_structural_tag_name(None)
-
-    return out.getvalue()
+def markdown_to_html(*args, **kwargs):
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("markdown_asdf", os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "zip-file-format/tools/markdown-to-html.py"))
+    asdf = importlib.util.module_from_spec(spec)
+    sys.modules["markdown_asdf"] = asdf
+    spec.loader.exec_module(asdf)
+    return asdf.markdown_to_html(*args, **kwargs)
 
 attribute_substitutions = {
     # https://www.w3.org/TR/2012/WD-html-markup-20120329/syntax.html#syntax-attr-unquoted
