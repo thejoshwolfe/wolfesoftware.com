@@ -6,3 +6,11 @@ url=https://github.com/thejoshwolfe/git-vendor.git
 follow-branch=release
 commit=e123a95af89c09ac3f66942e56f7ed688ed41661
 include=/git-vendor
+
+---
+
+dir=deps/markdown-looks-good
+url=https://github.com/thejoshwolfe/markdown-looks-good
+follow-branch=main
+commit=e12bb05ac61e00b26fd70143840f777a60b2ac62
+include=/markdown_looks_good.py
