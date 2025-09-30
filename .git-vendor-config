@@ -1,0 +1,8 @@
+# This is a git-vendor config file.
+# For details see https://github.com/thejoshwolfe/git-vendor/blob/main/README.md#reference
+
+dir=deps/git-vendor
+url=https://github.com/thejoshwolfe/git-vendor.git
+follow-branch=release
+commit=e123a95af89c09ac3f66942e56f7ed688ed41661
+include=/git-vendor
